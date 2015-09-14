@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<link rel="SHORTCUT ICON" href="../images/_nb_interface/favicon.ico">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>NXT Counter</title>
+<script language="Javascript" type="text/javascript" src="./notebook.js"></script>
+<style type="text/css">div.notebookcell{ position:relative; }</style>
+<STYLE type="text/css">
+
+	.pna0 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 20px;
+		font-weight : bold;
+		color : #000000;
+	}
+
+
+	.blankline {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		color : #000000;
+		text-align : center;
+	}
+
+
+	.f0 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		color : #000000;
+	}
+
+
+	.f1 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		color : #000000;
+		text-align : right;
+	}
+
+
+</STYLE>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0" onload="InitNotebookPage();">
+<!-- PAGE CONTENT -->
+
+ <table summary="layout frame" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" background="../images/_nb_marginLines/f8454affffff112.png">
+  <tr>
+    <td width="1">
+<img src="../images/_nbs.gif" alt="" border="0" width="1" height="1">
+    </td>
+    <td width="100%" valign="top">
+      <table summary="notebook topmargin" border="0" cellspacing="0" cellpadding="0" width="100%" height="60">
+        <tr>
+          <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+          <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+          <td width="100%" valign="top" align="right" nowrap ><img src="../images/_nbs.gif" alt="" border="0" width="5" height="1"><img src="../images/_nbs.gif" alt="" border="0" width="23" height="33" usemap="#pagecurlltmap"><br>
+          <img src="../images/_nbs.gif" alt="" border="0" width="540" height="1"></td>
+        </tr>
+      </table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+      
+      <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td width="100%" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"><br>
+<font class="pna0">NXT Counter&mdash;a Tutorial<br></font></td>
+      
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nbs.gif" width="13" height="13" border="0" alt=""></nobr></td>      <td width="100%" valign="top"></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">A long time ago, when I was a college student, I had a summer job working for my hometown's park authority. As a temporary summer employee I had no fixed job, but was given whatever odd jobs that came up that nobody else wanted. One day I was handed a mechanical counter and told to stand at the park's main entrance and count people as they entered the park. The counter was a mechanical device with a display that looked like a automobile odometer. It had three keys much like the keys on a mechanical typewriter. Pushing down on one of the keys increased the count by one, pushing the second key decreased the count by one (intended for correcting mistakes), and the third key reset the counter to zero. I spent one of most boring days of life with that counter. I don't remember exactly what the count was at the end of the day, but it was in the thousands.</font><font class="f0"><br></font><font class="f0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;That day in the park is the inspiration behind the NXT counter program. It may not be a program with much real utility, but it makes a good tutorial. It is neither too long nor too short. It covers one approach to multitasking that is both safe and applicable to many situations. And it has the advantage of requiring no other LEGO parts other than the NXT itself.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_0', 'ctrlimage_0', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_0" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The program demonstrates many features of NXC, but my main purpose for making it available is twofold:<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_0" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">To show how several tasks can safely share a common resource under the protection a mutex.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">To showcase the divide-and-conquer approach to program development. You will see how generating a seven-segment display can be broken down into a collection of very simple functions.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_1', 'ctrlimage_1', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_1" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Acknowlegement <br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_1" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">In his books on programming, author Dan Shafer always liked to present a simulation of a counter much like the one I described above as his first example of a program above the level of hello-world. I believe Dan had a good idea, so when I decided to a tutorial on NXC programming, I based it on his idea as well as my memory of that day in the park.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1"></font><font class="f1"><br></font><font class="f1"><br></font><p align="right"><font class="f1">Morton Goldberg</font><br><font class="f1">Ann Arbor, Michigan</font><br><font class="f1">June, 2010<br></font></p></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr></nobr></td>      <td width="100%" valign="top"></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="5" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+      
+    </td>
+    
+    <td width="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="7" height="33" usemap="#pagecurlrtmap"></td>  </tr>
+  
+</table>   
+
+<!-- /PAGE CONTENT -->
+</body>
+</html>
+

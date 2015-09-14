@@ -1,0 +1,922 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<link rel="SHORTCUT ICON" href="../images/_nb_interface/favicon.ico">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>NXT Counter</title>
+<script language="Javascript" type="text/javascript" src="./notebook.js"></script>
+<style type="text/css">div.notebookcell{ position:relative; }</style>
+<STYLE type="text/css">
+
+	.pna0 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 20px;
+		font-weight : bold;
+		color : #000000;
+	}
+
+
+	.blankline {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		color : #000000;
+		text-align : center;
+	}
+
+
+	.f0 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		color : #000000;
+	}
+
+
+	.f1 {
+		font-family : Courier,Times,serif;
+		font-size : 14px;
+		color : #000000;
+	}
+
+
+	.f2 {
+		font-family : Helvetica,Arial,sans-serif;
+		font-size : 14px;
+		font-style : italic;
+		color : #000000;
+	}
+
+
+	.f3 {
+		font-family : Courier,Times,serif;
+		font-size : 14px;
+		font-style : italic;
+		color : #000000;
+	}
+
+
+</STYLE>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" marginheight="0" leftmargin="0" marginwidth="0" onload="InitNotebookPage();">
+<!-- PAGE CONTENT -->
+
+ <table summary="layout frame" border="0" cellspacing="0" cellpadding="0" width="100%" height="100%" background="../images/_nb_marginLines/f8454affffff1122.png">
+  <tr>
+    <td width="1">
+<img src="../images/_nbs.gif" alt="" border="0" width="1" height="1">
+    </td>
+    <td width="100%" valign="top">
+      <table summary="notebook topmargin" border="0" cellspacing="0" cellpadding="0" width="100%" height="60">
+        <tr>
+          <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+          <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+          <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+          <td width="100%" valign="top" align="right" nowrap ><img src="../images/_nbs.gif" alt="" border="0" width="5" height="1"><img src="../images/_nbs.gif" alt="" border="0" width="23" height="33" usemap="#pagecurlltmap"><br>
+          <img src="../images/_nbs.gif" alt="" border="0" width="540" height="1"></td>
+        </tr>
+      </table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="4"><br>
+</td>
+      
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+      
+      <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td width="100%" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"><br>
+<font class="pna0">Notes<br></font></td>
+      
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nbs.gif" width="13" height="13" border="0" alt=""></nobr></td>      <td width="100%" valign="top"></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298406668_668717.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="4"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_0', 'ctrlimage_0', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_0" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 17&ndash;19. Changing the number of counter digits at compile time<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_0" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Surrounding the </font><font class="f1">#define</font><font class="f0"> </font><font class="f1">DIGITS</font><font class="f0"> at line 18 with </font><font class="f1">#ifdef ... #endif</font><font class="f0"> makes it possible change the the value of </font><font class="f1">DIGITS</font><font class="f0"> at compile time; i.e., it isn't necessary to edit the source code file to change this value.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_1', 'ctrlimage_1', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_1" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">When running the compiler from the command line, add the following switch:<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_1" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">-D=DIGITS=</font><font class="f2">&lt;value&gt;<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f2">&lt;value&gt;</font><font class="f0"> should be in the range 1 to 5.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_2', 'ctrlimage_2', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_2" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">When running the compiler from BricxCC, enter the switch in the Switches edit box which is found on the NBC/NXC tab of the Compiler tab of the Preferences dialog.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_2" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><img width="14" height="14" border="0" src="../images/_nb_ffffff/DocumentSticker.png" alt=""></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><table summary="media" border="0" cellspacing="0" cellpadding="0" align="left"><tr><td><img width="443" height="370" border="0" align="left" hspace="5" vspace="5" src="../images/_nb_mediaFrames/2111switches.png" alt=""></td></tr></table><font class="f0"><br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298406750_304062.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="12"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_3', 'ctrlimage_3', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_3" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 22&ndash;24. Internal representation of the counter<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_3" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_4', 'ctrlimage_4', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_4" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">These three variable declarations comprise a shared resource and its protective mutex.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_4" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The </font><font class="f1">counter</font><font class="f0"> array maintains the current value of the count as an array of digits.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">counter_changed</font><font class="f0"> is a flag that tells the </font><font class="f1">show_count</font><font class="f0"> task when to update the NXT display.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298406834_044466.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="16"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_5', 'ctrlimage_5', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_5" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 28&ndash;45. Preprocessor literals <br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_5" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Be aware that a #define defines a textual substitution made in the source code by the preprocessor before the NXC compiler sees the code. This is the reason for what might otherwise looks to be overly elaborate use of parentheses. <br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_6', 'ctrlimage_6', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_6" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Abbreviations used<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_6" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">H</font><font class="f0">&nbsp;&nbsp;&nbsp;&nbsp;height<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">HRZ</font><font class="f0">&nbsp;&nbsp;&nbsp;&nbsp;horizontal<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">VRT</font><font class="f0">&nbsp;&nbsp;&nbsp;&nbsp;vertical<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">W</font><font class="f0">&nbsp;&nbsp;&nbsp;&nbsp;width<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">X_OFFSET</font><font class="f0"> and </font><font class="f1">Y_OFFSET</font><font class="f0"> are the displacements needed to center the count on the NXT's screen.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298406907_815265.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="24"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_7', 'ctrlimage_7', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_7" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 47&ndash;59. Segment drawing functions<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_7" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">These two inline functions do all the output to the NXT screen. The 7-segment digits you see are built up from multiple calls to these functions.&nbsp;&nbsp;</font><font class="f1">hrz_segment_out</font><font class="f0"> draws the horizontal segments; </font><font class="f1">vrt_segment_out</font><font class="f0"> draws the vertical ones.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298406974_325135.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="26"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_8', 'ctrlimage_8', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_8" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 76&ndash;137. Segment output functions<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_8" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Each of these functions computes the position of a particular segment in the 7-segment pattern and then calls one of segment drawing functions to draw it.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407033_911944.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="27"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_9', 'ctrlimage_9', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_9" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Lines 142&ndash;240. Digit output functions<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_9" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The digits on the screen are built up from multiple calls to the segment output functions.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Spreading the work of displaying each of the 7-segment digits over many small functions makes the program a little longer, but has the advantage of making development easier, especially in the debugging and maintenance phases.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407083_803549.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="31"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_10', 'ctrlimage_10', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_10" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 245. </font><font class="f1">offset</font><font class="f0"> function<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_10" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Each digit of the count must be placed at its proper offset from the left side of the NXT screen. This function makes the necessary computation. It is called by the </font><font class="f1">show_count</font><font class="f0"> task.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407128_281861.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="2"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_11', 'ctrlimage_11', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_11" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 254. </font><font class="f1">button_bumped</font><font class="f0"> function<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_11" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Bumped means pressed and then released. You can not get repeated increments or decrements by holding down a button.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Since this function is shared by three tasks, </font><font class="f1">increment</font><font class="f0">, </font><font class="f1">decrement</font><font class="f0">, and </font><font class="f1">zero</font><font class="f0">, you might think it should protected by declaring it a </font><font class="f1">safecall</font><font class="f0"> function. That's a good thought, but it's not necessary in this case because all the calls take place within the protection of </font><font class="f1">counter_mutex</font><font class="f0">.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407182_042679.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="36"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_12', 'ctrlimage_12', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_12" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 268. </font><font class="f1">increment</font><font class="f0"> task<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_12" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The&nbsp;&nbsp;main concern of the </font><font class="f1">for</font><font class="f0">-loop is carry propagation. Each time the right button is bumped, the units digit of the counter is increased by one. If it is at 9 when this happens, the units digit rolls over to 0 and a carry is generated, which must be propagated to the tens digit, and so on. To simplify the code, the </font><font class="f1">for</font><font class="f0">-loop is tricked into doing the units increment; this is why </font><font class="f1">carry</font><font class="f0"> is initialized to 1.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The </font><font class="f1">for</font><font class="f0">-loop's termination condition </font><font class="f1">((carry == 1) &amp;&amp; (i &lt; DIGITS))</font><font class="f0"> stops the carry propagation when there is no longer a carry to propagate or when the carry propagates beyond the highest order digit. In the latter event, the counter rolls over from all nines to all zeros.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_13', 'ctrlimage_13', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_13" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Pattern for tasks sharing a resource<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_13" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">All the tasks in the counter program, except the main task, share a common design pattern. This pattern is something you should keep in mind because you will find it useful over and over again. <br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f1">task </font><font class="f3">&lt;task_name&gt;</font><font class="f1">()</font><font class="f1"><br></font><font class="f1">{</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;while(true)</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;{</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Acquire(</font><font class="f3">&lt;mutex_name&gt;</font><font class="f1">);</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* code */</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Release(</font><font class="f3">&lt;mutex_name&gt;</font><font class="f1">);</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Yield();</font><font class="f1"><br></font><font class="f1">&nbsp;&nbsp;&nbsp;}</font><font class="f1"><br></font><font class="f1">}<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="44" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="44" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0"><br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407222_549041.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="40"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_14', 'ctrlimage_14', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_14" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 297. </font><font class="f1">decrement</font><font class="f0"> task<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_14" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The </font><font class="f1">decrement</font><font class="f0"> task is really just the </font><font class="f1">increment</font><font class="f0"> task modified to do subtraction, i.e., to deal with borrow propagation.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407270_925970.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="48"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_15', 'ctrlimage_15', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_15" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 325. </font><font class="f1">zero</font><font class="f0"> task<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_15" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">The </font><font class="f1">zero</font><font class="f0"> task reinitializes the counter's global variables.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407370_768035.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="42"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_16', 'ctrlimage_16', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_16" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 342. </font><font class="f1">show_count</font><font class="f0"> task<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_16" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Although the code is spread over many lines, it is really very simple because all the work is done by the ten digit drawing functions, </font><font class="f1">digit_0</font><font class="f0">, ..., </font><font class="f1">digit_9</font><font class="f0">. The task is a good demonstration of the NXC </font><font class="f1">switch</font><font class="f0"> statement. It could be replaced with a long chain of </font><font class="f1">if-else</font><font class="f0"> statements but a </font><font class="f1">switch</font><font class="f0"> statement is really much more readable and maintainable.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="6" height="1"></td>
+      <td width="20" valign="top"><a href="./20-2.html" target="_top" class="l0"><img width="14" height="14" border="0" src="../images/_nb_ffffff/ck_0_298407415_793319.png" alt=""></a></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+<a name="44"></a>      <td valign="top"><nobr><a href="Javascript:ExpandNotebookCell('notebookcell_17', 'ctrlimage_17', '../images/_nb_interface/CollapsedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif', '../images/_nb_interface/ExpandedFlat.gif');"><img name="ctrlimage_17" src="../images/_nb_interface/ExpandedFlat.gif" width="13" height="13" border="0" alt=""></a><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">Line 395. </font><font class="f1">main</font><font class="f0"> task<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+<div id="notebookcell_17" class="notebookcell">
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="24" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="24" height="1"></td>
+      
+      <td valign="top"><nobr><img src="../images/_nb_interface/LinkedGray.gif" width="13" height="13" border="0" alt=""><img src="../images/_nbs.gif" alt="" border="0" width="3" height="1"></nobr></td>      <td width="100%" valign="top"><font class="f0">All this task does is initialize the counter's global variables. It then exits, allowing the other four tasks to start up. These will loop repeatedly until the gray button is pressed.<br></font></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+</div>
+<table summary="notebook cell" border="0" cellspacing="0" cellpadding="0" width="100%">
+    <tr>
+      <td width="20" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="20" height="1"></td>
+
+      <td width="1"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="1"></td>
+
+       <td width="4" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="4" height="1"></td>
+      
+      <td valign="top"><nobr></nobr></td>      <td width="100%" valign="top"></td>
+
+      <td width="15" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="15" height="1"></td>
+    </tr>
+    <tr>
+      <td colspan="6" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="1" height="4"></td>
+    </tr>
+</table>
+      
+    </td>
+    
+    <td width="7" valign="top"><img src="../images/_nbs.gif" alt="" border="0" width="7" height="33" usemap="#pagecurlrtmap"></td>  </tr>
+  
+</table>   
+
+<!-- /PAGE CONTENT -->
+</body>
+</html>
+
