@@ -1,0 +1,9 @@
+task main()
+{
+	while(true)
+	{
+		OnRev(OUT_A,75);
+		Wait(100);
+		
+	}
+}
