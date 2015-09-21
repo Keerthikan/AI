@@ -18,12 +18,12 @@ task main()
       			string width;
 			string height;
 			string diamod;
-			int count = 0;
+			int count = 1;
 			char temps[2];
-			while(count <= 1)
+			while(count <= 2)
 			{
-				temps[count] = fgetc(handle); 
-				if(!isspace(temps[count]))
+				temps[count-1] = fgetc(handle); 
+				if(!isspace(temps[count-1]))
 				{	
 					for(int i = 0; i < count ; i++)
 					{
