@@ -1,9 +1,18 @@
-taks main()
+task main()
 {
+	SetSensor(IN_1,SENSOR_TOUCH);
 	while(true)
-	{
-		OnRev(OUT_A,75);
-		Wait(100);
-		
+	{		
+	       if(SENSOR_1 == 1)
+		{
+			OnRev(OUT_A,75);
+			Wait(100);	
+		}
+		else
+		{
+			OnRev(OUT_A,0);
+			Wait(10);			
+			// Comments
+		}
 	}
 }
