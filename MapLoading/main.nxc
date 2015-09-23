@@ -1,86 +1,66 @@
 #import "map.txt" maps
-void chrrepeat(char ch, string &target, const int count) {
-  string help = "x"; // x will be replaced
-  help[0] = ch;
-  for(int i=0; i<count; i++)
-    strcat(target, help);
-}
 
 task main()
 {	
-	int diamonds = 0;
-	while(true)
+	FileOpenType file;
+	file.Filename = "map.txt";
+	SysFileOpenRead(file); 
+	string width;
+	string height;
+	string diamod;
+	string nope;
+	if (file.Result == NO_ERR)
+    	{
+      		
+		int count = 0;
+		char temp;	
+		fgets(width, 2, file.FileHandle);
+		TextOut(0, LCD_LINE3, "done widht: " + width);	
+		temp = fgetc(file.FileHandle);	
+		fgets(height, 2, file.FileHandle);
+ 		TextOut(0, LCD_LINE4, "done height: " + height);
+		temp = fgetc(file.FileHandle);		    
+		fgets(diamod, 2, file.FileHandle);
+		TextOut(0, LCD_LINE5, "done diamod: " + diamod);
+	        //Wait(10000);
+    	}
+	ClearScreen();
+	char map[10][9]; 
+	fgets(nope,1000,file.FileHandle);
+	while(file.Result == NO_ERR)
 	{
-		byte handle;
-		handle = fopen("map.txt", "r");
-		if (handle != NULL)
-    		{
-      			string width;
-			string height;
-			string diamod;
-			int count = 0;
-			char temps[2];
-			while(count <= 1)
+	   for( int i = 0; i < StrToNum(height); i++ )
+	   {
+		
+		 for(int j = 0 ; j < StrToNum(width) ; j++)
+		{	
+			char temps = fgetc(file.FileHandle);
+			if(temps != '\n')
 			{
-				temps[count] = fgetc(handle); 
-				if(!isspace(temps[count]))
-				{	
-					for(int i = 0; i < count ; i++)
-					{
-						TextOut(0, LCD_LINE1, temps[i]);
-						TextOut(0, LCD_LINE2, "break:" + NumToStr(i));
-						Wait(1000);
-					}
-						count++;
-				}
-				else 
-				{
-					TextOut(0, LCD_LINE1, "break");
-					break;
-				}
+				map[i][j] = temps;
+				
+
 			}
-			
-			TextOut(0, LCD_LINE3, "done");
-			TextOut(0,LCD_LINE4,temps);	
-			//fgets(height, 2, handle);
-			//fgets(diamod, 2, handle);
-      			//TextOut(0, LCD_LINE1, "width: " + width);
-			//TextOut(0, LCD_LINE2, "height: " + height);
-			//TextOut(0, LCD_LINE3, "Diamonds: " + diamod);
-			Wait(20000);
-    		}
-		//if(maps != NULL)
-		//{
-		//	OnRev(OUT_A,75);
-		//	Wait(100);
-		//}
+			else
+			{
+				//TextOut(0, LCD_LINE1,"Done" + NumToStr(i));
+				//TextOut(0, LCD_LINE2,"Done: " + map[0]);
+	   			//Wait(1000);
+				ClearScreen();
+			}
+		}
 
-  		//FileOpenType foArgs;
-                //foArgs.Filename = "map.txt";
-  		//SysFileOpenRead(foArgs); // open the file for reading
-		//string Result = ByteArrayToStr(foArgs);
-  		//if (foArgs.Result == NO_ERR) 
-		//{
-		//	TextOut(0,0,NumToStr(foArgs.Result));
-		//	TextOut(0,32,Result);
-   		//	OnRev(OUT_A,75);
-		//	Wait(100);	 // read data from the file using FileHandle
-			
-		//}  
-		//else
-		//{
-		//	OnRev(OUT_A,0);
-		//}
-
-		//if (foArgs.Result != NO_ERR) 
-		//{
-		//	TextOut(0,0,NumToStr(foArgs.Result));
-   		//	OnRev(OUT_C,75);
-		//	Wait(100);	 // read data from the file using FileHandle
-		//}  
-		//else
-		//{
-		//	OnRev(OUT_C,0);
-		//}
+		
+	   }
+	   string temp;
+	   strcat(temp,map[0]);
+	   //TextOut(0, LCD_LINE1,"Done" + NumToStr(i));
+	   //string temp = new string(map[0]);
+	   TextOut(0, LCD_LINE2, temp);
+	   Wait(10000);
+	   ClearScreen();	
+    	   break;
 	}
+	
+
 }	
