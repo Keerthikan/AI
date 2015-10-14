@@ -1,0 +1,18 @@
+#import "kiddi.txt"
+
+task main()
+{
+
+    FileOpenType kiddi;
+    kiddi.Filename = "kiddi.txt";
+    SysFileOpenRead(kiddi); 
+    string temp;	
+    fgets(temp, kiddi.Lenght, kiddi.FileHandle);
+    int count = 0;
+    while(count < 10)
+    {
+	TextOut(0,LCD_LINE1, temp[count]);
+	Wait(SEC_10);
+	count = count + 1;
+    }
+}
