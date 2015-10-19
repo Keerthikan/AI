@@ -45,12 +45,12 @@
 \textbf{ 1.  What behaviours or functions will you equip the robot with, so it can complete
      the Sokoban course successfully?}\\
      
-     The robot is capable of turning left and right as well as moving forward. The robot is can perform these command based on the input file it provided with. The input file contains a string of the movement the robot has to perform in order the solve the sokoban game. \\
+     The robot is capable of turning left and right as well as moving forward. The robotperform these command based on the input file its provided with. The input file contains a string of the movement the robot has to perform in order the solve the sokoban game. \\
      
 	A special function capable of moving the tin one step forward is  also implemented. In this function is each wheel rotated  with a specified amount of revolutions forward such that the tin will be moved to the next position. The robot will then using its sensor  move back to its original position. \\
 
      
-     Besides its movement capabilities,  the robot also knows its orientation. This implementation was chosen in order to separate the functionality of the Sokoban solver and the movement of the robot.  The functionality of constantly knowing the orientation was considered more meaningful for the robot rather than the solver. 
+     Besides its movement capabilities,  the robot also knows its orientation. This implementation was chosen in order to separate the functionality of the Sokoban solver and the movement of the robot.  The functionality of constantly knowing the orientation was considered more relevant for the robot rather than the solver. 
      
 \begin{lstlisting}
 bool forward()
@@ -126,7 +126,7 @@ bool left()
 The robot has 3 sensor,  two in the front, and one in the back.  The front two sensor is being used to follow a line, and the sensor in the back make it capable of turning left and right. 
 	\begin{figure}[H]
 	\begin{center}
-    \includegraphics[width=\textwidth]{robot.jpg}
+    \includegraphics[width=\textwidth]{/home/student/AI/mand2/robot.JPG}
   \end{center}
   \caption{The current version of the robot}
 \end{figure}   			
