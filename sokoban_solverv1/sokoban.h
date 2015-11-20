@@ -22,6 +22,7 @@ struct Edge
    Node *neighbour;
 
 };
+//int traverseNeighbour(Edge edge, Edge last_edge);
 
 struct Node
 {
@@ -42,6 +43,7 @@ public:
     std::vector<Node>  graph;
     bool **AdjMatrix;
     Sokoban(std::string file);
+    void printMap();
     //A* heuristic added
 
     int getRow(){
@@ -54,7 +56,7 @@ public:
         return diamonds;
     }
     char getChar(int x, int y){
-        return board[y][x];
+        return board[x][y];
     }
     void createGraph();
     void deadlockDetection();
