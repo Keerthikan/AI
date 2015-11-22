@@ -101,6 +101,8 @@ for (int col = 0; col < getCol(); col++) {
             node.Element = getChar(row,col);
             node.position = make_pair(row,col);
             node.deadlock = false;
+            node.weight = 0;
+            node.weight_diamond = 0;
             if(node.Element == 'X')
             {
               node.deadlock = true;
@@ -119,8 +121,11 @@ for (int col = 0; col < getCol(); col++) {
   //finding NeigbourNodes
   //Looking at each node neigbour.
   //-------------------------------------------------------//
+  int node = 0;
   for(auto it = begin(graph); it != end(graph) ; ++it)
   {
+    cout << node << endl;
+    node++;
     double  beforeCount = 0;
     double  nextCount = 0;
     double  upCount  = 0;
@@ -142,6 +147,13 @@ for (int col = 0; col < getCol(); col++) {
            beforeCount++;
            it->neighbours.push_back(edge);
       }
+      else
+      {
+          Edge empty;
+          empty.me = NULL;
+          empty.neighbour = NULL;
+          it->neighbours.push_back(empty);
+      }
       if(next != graph.end()&& !isspace(graph[next-graph.begin()].Element))
       {
              Edge edge;
@@ -155,7 +167,14 @@ for (int col = 0; col < getCol(); col++) {
              //cout << "-next arc - added" << endl;
              //cout <<"size: "<< it->neighbours.size() << endl;
       }
-   }
+      else
+      {
+          Edge empty;
+          empty.me = NULL;
+          empty.neighbour = NULL;
+          it->neighbours.push_back(empty);
+      }
+    }
     if (it->position.second >= 0 && it->position.second <= getCol() )
     {
       auto down = std::find_if(graph.begin(), graph.end(),find_neigbour(make_pair(it->position.first,it->position.second-1)));
@@ -172,6 +191,14 @@ for (int col = 0; col < getCol(); col++) {
              it->neighbours.push_back(edge);
              //cout << "up - arc - added" << endl;
       }
+      else
+      {
+          Edge empty;
+          empty.me = NULL;
+          empty.neighbour = NULL;
+          it->neighbours.push_back(empty);
+      }
+
       if(down != graph.end() && !isspace(graph[down-graph.begin()].Element))
       {
                Edge edge;
@@ -184,6 +211,13 @@ for (int col = 0; col < getCol(); col++) {
                it->neighbours.push_back(edge);
                //cout << " down - arc - added" << endl;
       }
+      else
+      {
+          Edge empty;
+          empty.me = NULL;
+          empty.neighbour = NULL;
+          it->neighbours.push_back(empty);
+      }
     }
 
 
@@ -194,6 +228,8 @@ for (int col = 0; col < getCol(); col++) {
       //cout << "upCount: " << upCount << endl;
       //cout << "Size of neig: "<< it->neighbours.size() << endl;
       //cout << endl;
+      cout << "first occurence" << endl;
+
 
       if(it->neighbours.size() <= 1 )
       {
@@ -213,8 +249,8 @@ for (int col = 0; col < getCol(); col++) {
       nextCount = 0;
   }
   //cout << "I know who is next to me " << endl;
-  cout << graph.begin()->Element << graph.begin()->neighbours.size() << graph.begin()->neighbours.begin()->neighbour->Element << endl;
-
+  //cout << graph.begin()->Element << graph.begin()->neighbours.size() << graph.begin()->neighbours.begin()->neighbour->Element << endl;
+  cout << "done" << endl;
 }
 
 void Sokoban::generateAdjacencyMatrix()
@@ -260,121 +296,123 @@ void Sokoban::generateAdjacencyMatrix()
 
 void Sokoban::deadlockDetection()
 {
-    for(auto graph_it = begin(graph); graph_it != end(graph); graph_it++)
+    cout << "yolo" << endl;
+    //Detect corners
+    int counter = 0;
+    for(auto node = begin(graph); node != end (graph) ;  ++node )
     {
-        if(graph_it->neighbours.size() == 2 && graph_it->Element == '.')
+        cout << counter << endl;
+        counter++;
+        if (node->neighbours.size() == 4 && node->Element == '.')
         {
-            vector<Node*> trace;
-            cout << "corner found " <<"("<< graph_it->position.first <<","<< graph_it->position.second << ")" << endl;
-            graph_it->deadlock = true;
+            //Is it neighbouring a goal or a diamond?
+            bool incorrectCorner = true;
+            // Neighbournode[1] = before
+            // Neighbournode[2] = next
+            // Neighbournode[3] = up
+            // Neighbournode[4] = down
 
-            for (Edge& edge : graph_it->neighbours)
+            // corner = [case1][case3], [case1][case4], [case2][case4],[case2][case3]
+            if ((node->neighbours.at(0).me == NULL && node->neighbours.at(2).me == NULL) || (node->neighbours.at(0).me == NULL && node->neighbours.at(3).me == NULL) || (node->neighbours.at(1).me == NULL && node->neighbours.at(3).me == NULL) || (node->neighbours.at(1).me == NULL && node->neighbours.at(2).me == NULL) )
             {
-                cout << "Check neighbour direction" << endl;
-                int changeX = 0;
-                int changeY = 0;
-
-                changeX = graph_it->position.first - edge.neighbour->position.first;
-                changeY = graph_it->position.second - edge.neighbour->position.second;
-
-                cout << "neighbour direction is first: " << changeX << changeY << endl;
-                auto start_position = edge.neighbour;
-                vector<Node*> trace;
-                bool endIsCorner = false;
-                bool conditionMet = false;
-                cout << endl;
-                if (start_position->neighbours.size() == 2 && start_position->Element == '.')
-                {
-                        start_position->deadlock = true;
-                        endIsCorner = true;/* code */
-                }
-                else if(start_position->neighbours.size() == 4)
-                {
-                    conditionMet = true;
-                }
-                else
-
-                while((start_position->neighbours.size() != 2|| start_position->neighbours.size() != 4) && endIsCorner == false && conditionMet == false && start_position->Element =='.' )
-                {
-                    for(Edge& traversing_edge : start_position->neighbours)
-                    {
-                        cout <<"position before: " << graph_it->position.first << graph_it->position.second << " now position: "<< start_position->position.first << start_position->position.second <<  " change is: " << (start_position->position.first - traversing_edge.neighbour->position.first) <<  " " << start_position->position.second - traversing_edge.neighbour->position.second  << " Element is: " << traversing_edge.neighbour->Element << endl;
-                        if (traversing_edge.neighbour->neighbours.size() == 2 && traversing_edge.neighbour->Element == '.')
-                        {
-                            cout << "error found case 1" << endl;
-                            cout << "position: " << traversing_edge.neighbour->Element << traversing_edge.neighbour->position.first << traversing_edge.neighbour->position.second << endl;
-                            start_position = traversing_edge.neighbour;
-                            start_position->deadlock =true;
-                            trace.push_back(start_position);
-                            endIsCorner = true;
-                            conditionMet = true;
-                            break;
-                        }
-                        else if(traversing_edge.neighbour->neighbours.size() == 4 && traversing_edge.neighbour->Element == '.')
-                        {
-                            cout << "error found case 2" << endl;
-                            cout << "position: " << traversing_edge.neighbour->Element << traversing_edge.neighbour->position.first << traversing_edge.neighbour->position.second << endl;
-                            conditionMet = true;
-                            break;
-                        }
-
-                        if (start_position->position.first - traversing_edge.neighbour->position.first  == changeX && start_position->position.second - traversing_edge.neighbour->position.second == changeY  && traversing_edge.neighbour->Element == '.')
-                        {
-                            if (traversing_edge.neighbour->neighbours.size() == 3 && traversing_edge.neighbour->Element == '.')
-                            {
-                                cout << "traversed in right direction . " << endl;
-                                start_position = traversing_edge.neighbour;
-                                cout << "traversed to position: " << start_position->position.first << start_position->position.second <<" Element: "<<start_position->Element<< endl;
-                                trace.push_back(start_position);
-                            }
-
-                            else if (traversing_edge.neighbour->neighbours.size() == 2 && traversing_edge.neighbour->Element == '.')
-                            {
-                                edge.neighbour->deadlock = true;
-                                start_position = traversing_edge.neighbour;
-                                cout << "traversed to position being corner: " << start_position->position.first << start_position->position.second <<" Element: "<<start_position->Element<< endl;
-                                trace.push_back(start_position);
-                                endIsCorner = true;
-                            }
-
-                            else if (traversing_edge.neighbour->neighbours.size() == 4 && traversing_edge.neighbour->Element == '.')
-                            {
-                                cout << "traversed something else: " << start_position->position.first << start_position->position.second <<" Element: "<<start_position->Element<< endl;
-                                start_position = traversing_edge.neighbour;
-                            }
-                        }
-                        cout << endl;
-                    }
-                    if (conditionMet)
-                    {
-                        break;/* code */
-                    }
-
-                }
-
-                if (endIsCorner == true)
-                {
-                    for(auto traced: trace)
-                    {
-                        cout << "Traced for deadlocking position: " <<traced->position.first << traced->position.second << traced->Element<< endl;
-                        if (traced->Element == '.')
-                        {
-                            cout << "deadlocking position: " <<traced->position.first << traced->position.second << traced->Element<< endl;
-                            traced->deadlock = true;
-                        }
-                    }
-                }
-                else
-                {
-                    trace.empty();
-                    endIsCorner = false;
-                }
-                cout<<endl;
+                    incorrectCorner = false;
             }
 
+            if (!incorrectCorner)
+            {
+                cout << "corner detected" << endl;
+                node->deadlock = true;
+                node->weight = 100;
+                cout << "Locked" << endl;
+            }
         }
+    }
+
+    cout << "corners locked" << endl;
+
+    cout << "Lock in betweeen " << endl;
+    vector<Node*> trace;
+
+    //Find Corner pairs
+    Node* firstCorner = NULL;
+    Node* secondCorner = NULL;
+    for (size_t i = 0; i < graph.size(); i++)
+    {
+        cout << i << endl;
+        for (auto node = begin(graph) ;  node!= end(graph) ; ++node)
+        {
+            if (node->deadlock ==true && firstCorner == NULL && secondCorner == NULL && node->weight == 100)
+            {
+                firstCorner = &*node;
+                node->weight = 200;
+                cout << "first found" << firstCorner->position.first << firstCorner->position.second  << endl;
+            }
+            if(node->deadlock == true && secondCorner == NULL && firstCorner != NULL && node->weight == 100 && (firstCorner->position.first == node->position.first || firstCorner->position.second == node->position.second))
+            {
+                secondCorner = &*node;
+                node->weight = 200;
+                cout << "second found" << secondCorner->position.first << secondCorner->position.second  << endl;
+                break;
+            }
+        }
+
+        //Pair of corners found
+        // lock in between
+
+        if(firstCorner != NULL and secondCorner != NULL)
+        {
+            Node* traversingNode = firstCorner;
+            int changeX = secondCorner->position.first - firstCorner->position.first;
+            int changeY = secondCorner->position.second - firstCorner->position.second;
+            vector<Node*> trace;
+            bool specialCase = false;
+            while(traversingNode != secondCorner)
+            {
+                for(auto findNext = begin(traversingNode->neighbours); findNext != end(traversingNode->neighbours) ; ++findNext)
+                {
+                    if(findNext->me != NULL)
+                    { //Tjekke at den ikke deadlocker en diamant.
+                        if (findNext->neighbour->position.first - traversingNode->position.first == changeX || findNext->neighbour->position.second - traversingNode->position.second == changeY)
+                        {
+                            traversingNode = findNext->neighbour;
+                            trace.push_back(traversingNode);
+                            if(traversingNode->Element != '.')
+                            {
+                                specialCase = true;
+                                cout << "_____________________________Locking incorrect traceback need to be implemented ______________________" << endl;
+                            }
+                            cout << traversingNode->position.first << traversingNode->position.second << endl;
+                            break;
+                        }
+                    }
+                }
+                traversingNode->deadlock = true;
+            }
+            //check Content
+            for (auto trace_it = begin(trace); trace_it != end(trace); trace_it++ )
+            {
+                if(specialCase)
+                {
+                    trace.at(0)->deadlock = true;
+                }
+                else
+                {
+                    (*trace_it)->deadlock = true;
+                }
+            }
+            cout << "line locked" << endl;
+        }
+        firstCorner = NULL;
+        secondCorner = NULL;
+
         cout << endl;
     }
 
-  cout << "deadLock detected" << endl;
+    // reset weights
+    for (auto node  =  begin(graph); node != end(graph); node++)
+    {
+        node->weight = 0;
+    }
+
+    cout << "done" << endl;
 }

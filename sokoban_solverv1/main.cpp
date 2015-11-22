@@ -8,9 +8,10 @@ int main() {
   //cout << map.graph.begin()->Element << map.graph.begin()->neighbours.size() << endl;
   //map.generateAdjacencyMatrix();
   map.deadlockDetection();
+
   for(auto node: map.graph)
   {
-      cout << "node position: " <<"("<< node.position.first <<","<< node.position.second <<")"<< " " << node.Element<< endl; 
+      cout << "node position: " <<"("<< node.position.first <<","<< node.position.second <<")"<< " " << node.Element<< endl;
       if (node.deadlock)
       {
             cout << node.position.first << node.position.second << endl;
