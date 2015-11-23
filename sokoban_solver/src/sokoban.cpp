@@ -15,6 +15,117 @@
 using namespace std;
 
 
+void Sokoban::operator=(const Sokoban &rhs)
+{
+    row = rhs.row;
+    col = rhs.col;
+    diamonds = rhs.diamonds;
+    board = rhs.board;
+    heuristic = rhs.heuristic;
+    graph = rhs.graph;
+    AdjMatrix = rhs.AdjMatrix;
+}
+
+
+bool Sokoban::operator!=(const Sokoban &rhs )
+{
+    bool result = false;
+    for(int i = 0; i < this->graph.size(); i++)
+    {
+        if(this->graph.at(i).Element != 'M' &&
+                this->graph.at(i).Element != rhs.graph.at(i).Element &&
+                rhs.graph.at(i).Element != 'M')
+        {
+            result = true;
+            break;
+        }
+    }
+    return result;
+}
+
+void Sokoban::make_final()
+{
+    for(std::vector<Node>::iterator node = begin(graph); node != end(graph); node++)
+    {
+        if(graph.at(node - graph.begin()).Element == 'J')
+        {
+            graph.at(node - graph.begin()).Element = '.';
+        }
+
+        if(graph.at(node-graph.begin()).Element== 'G')
+        {
+            graph.at(node - graph.begin()).Element = 'j';
+        }
+    }
+}
+
+bool Sokoban::move_diamond(Node *B, Node *C)
+{
+    switch(C->Element)
+    {
+        case '.':
+            std::swap(B->Element,C->Element);
+            break;
+        case 'G':
+            if(B->Element == 'j')
+            {
+                B->Element = 'G';
+            }
+            else
+            {
+                B->Element = '.';
+            }
+            C->Element = 'j';
+            break;
+        default:
+            break;
+    }
+}
+
+bool Sokoban::swap(Node *A, Node *B)
+{
+    int position;
+    for(int i = 0; i < A->neighbours.size(); i++)
+    {
+        if(A->neighbours.at(i).neighbour == B)
+        {
+            position = i;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    // Check B-> element
+    switch(B->Element)
+    {
+    case '.':
+        std::swap(A->Element, B->Element);
+        break;
+    case 'J':
+        move_diamond(B, B->neighbours.at(position).neighbour);
+        std::swap(A->Element, B->Element);
+        break;
+    case 'G':
+        if(A->Element == 'm')
+        {
+            A->Element = 'G';
+        }
+        else
+        {
+            A->Element = '.';
+        }
+        B->Element = 'm';
+        break;
+    case 'j':
+        move_diamond(B, B->neighbours.at(position).neighbour);
+        std::swap(A->Element, B->Element);
+        break;
+    default:
+        break;
+    }
+    return true;
+}
 
 Sokoban::Sokoban(string file)
 {
@@ -68,6 +179,18 @@ Sokoban::Sokoban(string file)
 
     cout << "Map loaded" << endl;
 
+}
+
+
+Sokoban::Sokoban(const Sokoban &obj)
+{
+     row = obj.row;
+     col = obj.col;
+     diamonds = obj.diamonds;
+     board = obj.board;
+     heuristic = obj.heuristic;
+     graph = obj.graph;
+     AdjMatrix = obj.AdjMatrix;
 }
 
 struct find_neigbour {

@@ -14,9 +14,11 @@
 
 using namespace std;
 
-typedef std::pair<int,int> position_t;
 
 struct Node;
+
+typedef std::pair<int,int> position_t;
+typedef std::vector<Node> graph_t;
 
 struct Edge
 {
@@ -36,14 +38,17 @@ struct Node
     vector<Edge> neighbours;
 };
 
+
 class Sokoban{
 public:
+    Sokoban() = default;
+    Sokoban(const Sokoban &obj);
     int row;
     int col;
     int diamonds;
     char **board;
-    int heuristics;
-    std::vector<Node>  graph;
+    int heuristic;
+    graph_t  graph;
     bool **AdjMatrix;
     Sokoban(std::string file);
     void printMap();
@@ -61,9 +66,17 @@ public:
     char getChar(int x, int y){
         return board[x][y];
     }
+
     void createGraph();
     void deadlockDetection();
     void generateAdjacencyMatrix();
+    void make_final();
+    void operator =(const Sokoban &rhs);
+private:
+    bool swap(Node *A, Node *B);
+    bool move_diamond(Node *B, Node *C);
+    bool operator !=(const Sokoban &rhs);
+
 };
 
 #endif

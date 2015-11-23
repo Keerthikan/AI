@@ -17,9 +17,7 @@ bool a_star::validate_push_direction(Edge *edge)
     {
         if(direction_row == -1)
         {
-            //RIGHT
-            //DOWN - Need to be corrected
-            if(edge->me->neighbours[UP].me == NULL || edge->me->neighbours[UP].neighbour->Element == DIAMOND || edge->neighbour->deadlock)
+            if(edge->me->neighbours[UP].me == NULL || edge->me->neighbours[UP].neighbour->Element == DIAMOND || edge->neighbour->deadlock || edge->me->neighbours[UP].neighbour->Element == DIAMOND_ON_GOAL )
             {
                 result = false;
             }
@@ -30,9 +28,8 @@ bool a_star::validate_push_direction(Edge *edge)
         }
         else
         {
-            //LEFT
-            //UP - need to be corrected
-            if(edge->me->neighbours[DOWN].me == NULL || edge->me->neighbours[DOWN].neighbour->Element == DIAMOND || edge->neighbour->deadlock)
+
+            if(edge->me->neighbours[DOWN].me == NULL || edge->me->neighbours[DOWN].neighbour->Element == DIAMOND || edge->neighbour->deadlock ||  edge->me->neighbours[DOWN].neighbour->Element == DIAMOND_ON_GOAL)
             {
                 result = false;
             }
@@ -46,8 +43,7 @@ bool a_star::validate_push_direction(Edge *edge)
     {
         if(direction_col == -1)
         {
-            //DOWN
-            if(edge->me->neighbours[LEFT].me == NULL || edge->me->neighbours[LEFT].neighbour->Element == DIAMOND || edge->neighbour->deadlock)
+            if(edge->me->neighbours[LEFT].me == NULL || edge->me->neighbours[LEFT].neighbour->Element == DIAMOND || edge->neighbour->deadlock ||  edge->me->neighbours[LEFT].neighbour->Element == DIAMOND_ON_GOAL)
             {
                 result = false;
 
@@ -59,8 +55,7 @@ bool a_star::validate_push_direction(Edge *edge)
         }
         else
         {
-            //UP
-            if(edge->me->neighbours[RIGHT].me == NULL || edge->me->neighbours[RIGHT].neighbour->Element == DIAMOND || edge->neighbour->deadlock)
+            if(edge->me->neighbours[RIGHT].me == NULL || edge->me->neighbours[RIGHT].neighbour->Element == DIAMOND || edge->neighbour->deadlock ||  edge->me->neighbours[RIGHT].neighbour->Element == DIAMOND_ON_GOAL)
             {
                 result = false;
             }
@@ -81,42 +76,48 @@ int a_star::get_move_cost(Node* node)
 
 Node* a_star::get_push_direction(Node* node)
 {
-    int wavefront_val, wavefront_val_min = numeric_limits<int>::max();
+    int wavefront_val;
     Node *push_direction = NULL;
+    int count  =0 ;
     for(Edge &edge : node->neighbours)
     {
+        count++;
         if(edge.neighbour != NULL)
         {
             wavefront_val = wavefront_ptr->get_wavefront()[edge.neighbour->position.first][edge.neighbour->position.second];
-            if(wavefront_val < wavefront_val_min && validate_push_direction(&edge))
+            if(validate_push_direction(&edge))
             {
-                wavefront_val_min = wavefront_val;
                 push_direction = edge.neighbour;
+                cout << count<<  " " <<edge.neighbour->Element << endl;
+                push_directions.push_back(push_direction);
             }
+            else
+            {
+                push_directions.push_back(NULL);
+            }
+        }
+        else
+        {
+            push_directions.push_back(NULL);
         }
     }
     return push_direction;
 }
 
-heuristic_t a_star::get_heuristic(vector<Node*> diamonds, char initiator)
+int a_star::get_heuristic(vector<Node*> diamonds)
 {
-    int diamond_to_goal_cost, diamond_try_cost, move_cost;
-    heuristic_t heuristic, heuristic_min;
-    heuristic_min.first = numeric_limits<int>::max();
+    int diamond_to_goal_cost, move_cost;
+    int heuristic;
+
+    push_directions.clear();
 
     for(Node *node : diamonds)
     {
-        diamond_try_cost = node->weight_diamond;
         diamond_to_goal_cost = wavefront_ptr->get_wavefront()[node->position.first][node->position.second];
         move_cost = get_move_cost(get_push_direction(node));
-        heuristic.first = diamond_try_cost + diamond_to_goal_cost + move_cost;
-        heuristic.second = node;
-        if(heuristic.first < heuristic_min.first)
-        {
-            heuristic_min = heuristic;
-        }
+        heuristic += diamond_to_goal_cost + move_cost;
     }
-    return heuristic_min;
+    return heuristic;
 }
 
 vector<Node*> a_star::find_diamonds()
@@ -132,10 +133,11 @@ vector<Node*> a_star::find_diamonds()
     return diamonds;
 }
 
-a_star::a_star(std::vector<Node> graph, wavefront *wavefront_ptr)
+a_star::a_star(Sokoban sokoban, Sokoban sokoban_final, wavefront *wavefront_ptr)
 {
     this->wavefront_ptr = wavefront_ptr;
-    this->graph = graph;
+    this->graph = sokoban.graph;
+    this->sokoban = sokoban;
     for(Node node : graph)
     {
         if(node.Element == 'G')
@@ -145,15 +147,46 @@ a_star::a_star(std::vector<Node> graph, wavefront *wavefront_ptr)
     }
 }
 
+bool a_star::compare_heuristic(Sokoban *A, Sokoban *B)
+{
+    return (A->heuristic < B->heuristic);
+}
+
 std::string a_star::solve()
 {
     string path;
-    heuristic_t current_heuristic;
-    //queue<vector<Node>> open, closed;
+    int current_heuristic;
+    Sokoban* current;
 
-    //open.push(graph);
+    std::vector<Sokoban*> closed;
+    priority_queue<Sokoban*, std::vector<Sokoban*>, comp> open(compare_heuristic);
 
-    current_heuristic = get_heuristic(find_diamonds(),MAN);
+    open.push(&sokoban);
+    current_heuristic = get_heuristic(find_diamonds());
+
+    while(open.top() != &sokoban_final)
+    {
+        current = open.top();
+        open.pop();
+        closed.push_back(current);
+        for(std::vector<Node*>::iterator new_states = begin(push_directions) ; new_states != end(push_directions); new_states++)
+        {
+
+            // Could be a bug
+            if(push_directions.at(new_states - push_directions.begin()) != NULL)
+            {
+                Sokoban neighbour = *current;
+
+                // cout <<"new_state: " <<neighbour.graph.begin()->Element << endl;
+                // neighbour.graph.begin()->Element = 'K';
+                //cout <<"current_state: " << current->graph.begin()->Element << endl;
+
+                 std::vector<Node>::iterator new_position = find_if(neighbour.graph.begin(), neighbour.graph.end(), find_neighbour(push_directions.at(new_states - push_directions.begin())->position));
+                 cout << neighbour.graph.at(new_position-neighbour.graph.begin()).Element << endl;
+            }
+
+        }
+    }
 
     //cout << open.front().Element << endl;
     return path;
@@ -161,15 +194,7 @@ std::string a_star::solve()
 
 bool a_star::find_man(Node node)
 {
-    return node.Element == 'M' ? true : false;
+    return (node.Element == 'M' || node.Element == 'm') ? true : false;
 }
 
-struct find_neigbour {
-    const std::pair<int,int> position;
-    find_neigbour(const std::pair<int,int> position) : position(position) {}
 
-    bool operator()(const Node& j) const
-    {
-        return j.position == position;
-    }
-};
