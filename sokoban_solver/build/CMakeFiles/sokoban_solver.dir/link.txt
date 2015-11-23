@@ -1,0 +1,1 @@
+/usr/bin/c++   -g    CMakeFiles/sokoban_solver.dir/src/main.cpp.o CMakeFiles/sokoban_solver.dir/src/sokoban.cpp.o CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o CMakeFiles/sokoban_solver.dir/src/a_star.cpp.o  -o sokoban_solver -rdynamic 
