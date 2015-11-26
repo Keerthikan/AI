@@ -1,0 +1,1 @@
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/build/CMakeFiles/sokoban_solver.dir

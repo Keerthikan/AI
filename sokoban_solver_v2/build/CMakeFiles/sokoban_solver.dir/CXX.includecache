@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/a_star.hpp
+sokoban_map.hpp
+../include/sokoban_map.hpp
+wavefront.hpp
+../include/wavefront.hpp
+string
+-
+
+../include/sokoban_map.hpp
+string
+-
+vector
+-
+
+../include/wavefront.hpp
+sokoban_map.hpp
+../include/sokoban_map.hpp
+
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/a_star.cpp
+a_star.hpp
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/a_star.hpp
+iostream
+-
+queue
+-
+
