@@ -17,7 +17,7 @@ int main() {
   wavefront wavefront(map.row, map.col, map.graph);
   wavefront.get_wavefront('M');
 
-  a_star a_solver(map, final, &wavefront);
+  a_star a_solver(&map, &final, &wavefront);
   a_solver.solve();
 
   return 0;

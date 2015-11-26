@@ -31,28 +31,26 @@ struct find_neighbour {
     }
 };
 
-
-
 class a_star
 {
 public:
-    a_star(Sokoban sokoban, Sokoban sokoban_final, wavefront *wavefront_ptr);
+    a_star(Sokoban *sokoban, Sokoban *sokoban_final, wavefront *wavefront_ptr);
     std::string solve();
 private:
-    Sokoban sokoban, sokoban_final;
+    Sokoban *sokoban, sokoban_final;
     graph_t graph;
-    std::vector< std::pair<int, int> > goal;
+    std::vector< std::pair<int, int>> goal;
     wavefront *wavefront_ptr;
-    vector<Node*> push_directions;
+    std::vector<std::pair<Node*,Node*>> push_directions;
 
     static bool compare_heuristic(Sokoban *A, Sokoban *B);
     bool check_goal();
-    bool validate_push_direction(Edge *edge);
+    bool validate_push_direction(Edge *edge, int **wavefront_obstacle);
     static bool find_position(Node node);
     static bool find_man(Node node);
-    vector<Node*> find_diamonds();
+    std::vector<Node*> find_diamonds();
     int get_heuristic(vector<Node*> diamonds);
     int get_move_cost(Node* node);
-    Node* get_push_direction(Node* node);
+    Node* get_push_direction(Node* node, int **wavefront_obstacle);
 };
 #endif

@@ -11,6 +11,7 @@ public:
     wavefront() = default;
     wavefront(const int &row, const int &col, const int &diamonds, char **board);
     wavefront(int row, int col, std::vector<Node> graph);
+    int **get_wavefront(char initiator, char obstacle);
     int **get_wavefront(char initiator);
     int **get_wavefront();
 private:
