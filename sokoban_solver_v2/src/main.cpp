@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     sokoban_map map("../maps/map.txt");
-    map.print();
+    map.deadlock_detection();
 
     wavefront wf(&map);
     state_s init = map.get_init_state();

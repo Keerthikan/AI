@@ -15,6 +15,7 @@ CMakeFiles/sokoban_solver.dir/src/sokoban_map.cpp.o
  ../include/sokoban_map.hpp
  /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/sokoban_map.cpp
 CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o
+ ../include/a_star.hpp
  ../include/sokoban_map.hpp
  ../include/wavefront.hpp
  /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/wavefront.cpp

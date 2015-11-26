@@ -14,6 +14,7 @@ CMakeFiles/sokoban_solver.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/sokoban_solver.dir/src/sokoban_map.cpp.o: ../include/sokoban_map.hpp
 CMakeFiles/sokoban_solver.dir/src/sokoban_map.cpp.o: ../src/sokoban_map.cpp
 
+CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o: ../include/a_star.hpp
 CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o: ../include/sokoban_map.hpp
 CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o: ../include/wavefront.hpp
 CMakeFiles/sokoban_solver.dir/src/wavefront.cpp.o: ../src/wavefront.cpp

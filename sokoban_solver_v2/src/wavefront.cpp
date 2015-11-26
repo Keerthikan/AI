@@ -1,5 +1,5 @@
 #include "wavefront.hpp"
-
+#include "a_star.hpp"
 #include <queue>
 #include <iostream>
 
@@ -15,6 +15,7 @@ void wavefront::print_wavefront(int **wf)
         }
         cout << endl;
     }
+    cout <<"--------------------------"<< endl;
 }
 
 int** wavefront::init_array()
@@ -154,6 +155,9 @@ int** wavefront::get_wavefront(state_s state, char initiator, char obstacle)
     int** wf = init_array();
     impose_state(state);
 
+    char obstacle_other_type;
+
+
     queue<pair<int,int>> open;
 
     for(int i = 0; i < map->get_row(); i++)
@@ -165,8 +169,9 @@ int** wavefront::get_wavefront(state_s state, char initiator, char obstacle)
                 wf[i][j] = 1;
                 open.push(make_pair(i,j));
             }
-            else if(map->get_map()[i][j] == 'X' || map->get_map()[i][j] == obstacle)
+            else if(map->get_map()[i][j] == 'X' || map->get_map()[i][j] == obstacle || map->get_map()[i][j] == DIAMOND_ON_GOAL)
             {
+
                 wf[i][j] = -1;
             }
         }
@@ -214,7 +219,7 @@ int** wavefront::get_wavefront(state_s state, char initiator, char obstacle)
         }
     }
     clear_state();
-    print_wavefront(wf);
+//    print_wavefront(wf);
 
     return wf;
 }

@@ -10,7 +10,7 @@ struct state_s
 {
     position_t man;
     std::vector<diamond_t> diamonds;
-    int heuristic;
+    int heuristic, move_cost;
 
     bool operator!=(const state_s &rhs )
     {
@@ -34,6 +34,7 @@ public:
     sokoban_map(std::string);
     state_s get_init_state();
     state_s get_final_state();
+    void deadlock_detection();
     void print();
     void print(state_s state );
     int get_row(){ return row; }

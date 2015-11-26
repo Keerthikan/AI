@@ -23,12 +23,10 @@ public:
 private:
     static bool compare_heuristic(state_s A, state_s B);
     bool validate_push_direction(diamond_t diamond, position_t position, int** wavefront_obstacle);
-    void get_heuristic(state_s &state);
-    int get_move_cost(state_s state, position_t position);
+    void get_heuristic(state_s &child, state_s &parent);
     position_t get_push_direction(diamond_t diamond, int** wavefront_obstacle);
     void get_children(state_s parent, std::vector<state_s> &children);
 
-    std::vector<position_t> push_directions;
     state_s initial, final;
     wavefront wavefront_ptr;
     sokoban_map sokoban;

@@ -23,6 +23,146 @@ state_s sokoban_map::get_final_state()
     return state;
 }
 
+void sokoban_map::deadlock_detection()
+{
+
+    //Detect corners
+    vector<position_t> corners;
+    for(int i = 1 ;  i< get_row() ; i++)
+    {
+        int corner = 0;
+        for(int j = 1 ; j < get_col() ;  j++)
+        {
+            if(map[i][j] == '.')
+            {
+                if(map[i-1][j] == 'X' &&  map[i][j-1] == 'X')
+                {
+                    corner++;
+                }
+
+                if(map[i+1][j] == 'X' &&  map[i][j-1] == 'X')
+                {
+                    corner++;
+                }
+
+                if(map[i+1][j] == 'X' &&  map[i][j+1] == 'X')
+                {
+                    corner++;
+                }
+
+                if(map[i-1][j] == 'X' &&  map[i][j+1] == 'X')
+                {
+                    corner++;
+                }
+
+                if(corner == 1 )
+                {
+                    corners.push_back(make_pair(i,j));
+                    cout << "i: "<< i << " j: " << j << endl;
+                    map[i][j] = 'D';
+                    corner = 0;
+
+                }
+            }
+        }
+    }
+
+    for(position_t corner : corners)
+    {
+        position_t first_corner = corner;
+        position_t second_corner = make_pair(NULL,NULL);
+
+        // check for rows
+        bool second_corner_found = false;
+        for(position_t second_corner_ : corners)
+        {
+            if(first_corner.first == second_corner_.first && first_corner.second < second_corner_.second)
+            {
+                second_corner = second_corner_;
+                second_corner_found = true;
+                break;
+            }
+
+        }
+
+        // check elements in row
+        if(second_corner_found)
+        {
+            bool deadlock_row = true;
+            while(first_corner != second_corner)
+            {
+                first_corner.second++;
+                if(map[first_corner.first][first_corner.second] != '.' && map[first_corner.first][first_corner.second] != 'D')
+                {
+                    deadlock_row = false;
+                }
+            }
+
+            first_corner = corner;
+
+            if(deadlock_row)
+            {
+                while(first_corner != second_corner)
+                {
+                    map[first_corner.first][first_corner.second] = 'D';
+                    cout << "deadlocked row: " << first_corner.first << "," <<first_corner.second << endl;
+                    first_corner.second++;
+
+                }
+            }
+
+            second_corner_found = false;
+            deadlock_row = false;
+        }
+
+        first_corner = corner;
+        second_corner = make_pair(NULL,NULL);
+
+        // check for cols
+        second_corner_found = false;
+        for(position_t second_corner_ : corners)
+        {
+            if(first_corner.second == second_corner_.second && first_corner.first <  second_corner_.first)
+            {
+                second_corner = second_corner_;
+                second_corner_found = true;
+                break;
+            }
+
+        }
+        if(second_corner_found)
+        {
+            bool deadlock_col = true;
+            while(first_corner != second_corner)
+            {
+                first_corner.first++;
+                if(map[first_corner.first][first_corner.second] != '.' && map[first_corner.first][first_corner.second] != 'D')
+                {
+                    deadlock_col = false;
+                }
+            }
+
+            first_corner = corner;
+
+            if(deadlock_col)
+            {
+                while(first_corner != second_corner)
+                {
+                    map[first_corner.first][first_corner.second] = 'D';
+                    cout << "deadlocked col: " << first_corner.first << "," <<first_corner.second<< endl;
+                    first_corner.first++;
+                }
+            }
+
+            second_corner_found = false;
+            deadlock_col = false;
+        }
+
+    }
+
+    cout << corners.size() << endl;
+
+}
 
 state_s sokoban_map::get_child( state_s current, diamond_t diamond, position_t push_direction)
 {
@@ -93,7 +233,7 @@ void sokoban_map::clear_map()
             }
             else if(map[i][j] == 'j' || map[i][j] == 'm' )
             {
-                map[i][j] = 'g';
+                map[i][j] = 'G';
             }
         }
     }
@@ -116,6 +256,7 @@ void sokoban_map::print()
 
 void sokoban_map::print(state_s state)
 {
+    clear_map();
 
     if(map[state.man.first][state.man.second] == 'G')
     {
