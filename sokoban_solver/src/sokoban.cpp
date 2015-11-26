@@ -14,6 +14,23 @@
 
 using namespace std;
 
+void Sokoban::print_map()
+{
+    for(Node node : graph)
+    {
+        board[node.position.first][node.position.second] = node.Element;
+    }
+
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            cout << board[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "----------------------------" << endl;
+}
 
 void Sokoban::operator=(const Sokoban &rhs)
 {
@@ -59,12 +76,12 @@ void Sokoban::make_final()
     }
 }
 
-bool Sokoban::move_diamond(Node *B, Node *C)
+bool Sokoban::move_diamond(Node *&B, int position)
 {
-    switch(C->Element)
+    switch(B->neighbours.at(position).neighbour->Element)
     {
         case '.':
-            std::swap(B->Element,C->Element);
+            std::swap(B->Element,B->neighbours.at(position).neighbour->Element);
             break;
         case 'G':
             if(B->Element == 'j')
@@ -75,25 +92,22 @@ bool Sokoban::move_diamond(Node *B, Node *C)
             {
                 B->Element = '.';
             }
-            C->Element = 'j';
+            B->neighbours.at(position).neighbour->Element = 'j';
             break;
         default:
             break;
     }
 }
 
-bool Sokoban::swap(Node *A, Node *B)
+bool Sokoban::swap(Node *&A, Node *&B, Node *&C)
 {
     int position;
-    for(int i = 0; i < A->neighbours.size(); i++)
+    for(int i = 0; i < B->neighbours.size(); i++)
     {
-        if(A->neighbours.at(i).neighbour == B)
+        if(B->neighbours.at(i).me != NULL && C->neighbours.at(i).neighbour->position == B->position)
         {
             position = i;
-        }
-        else
-        {
-            return false;
+            break;
         }
     }
     // Check B-> element
@@ -103,7 +117,7 @@ bool Sokoban::swap(Node *A, Node *B)
         std::swap(A->Element, B->Element);
         break;
     case 'J':
-        move_diamond(B, B->neighbours.at(position).neighbour);
+        move_diamond(B, position);
         std::swap(A->Element, B->Element);
         break;
     case 'G':
@@ -118,7 +132,7 @@ bool Sokoban::swap(Node *A, Node *B)
         B->Element = 'm';
         break;
     case 'j':
-        move_diamond(B, B->neighbours.at(position).neighbour);
+        move_diamond(B, position);
         std::swap(A->Element, B->Element);
         break;
     default:
@@ -184,13 +198,20 @@ Sokoban::Sokoban(string file)
 
 Sokoban::Sokoban(const Sokoban &obj)
 {
-     row = obj.row;
-     col = obj.col;
-     diamonds = obj.diamonds;
-     board = obj.board;
-     heuristic = obj.heuristic;
-     graph = obj.graph;
-     AdjMatrix = obj.AdjMatrix;
+    row = obj.row;
+    col = obj.col;
+    diamonds = obj.diamonds;
+    board = obj.board;
+    heuristic = obj.heuristic;
+    for(int i = 0; i < obj.graph.size(); i++)
+    {
+        graph.push_back(obj.graph.at(i));
+        for(int j = 0; j < obj.graph.at(i).neighbours.size(); j++)
+        {
+            graph.at(i).neighbours.at(j) = *(new Edge(obj.graph.at(i).neighbours.at(j)));
+        }
+    }
+    AdjMatrix = obj.AdjMatrix;
 }
 
 struct find_neigbour {
@@ -226,7 +247,6 @@ for (int row = 0; row < getRow(); row++) {
             node.position = make_pair(row,col);
             node.deadlock = false;
             node.weight = 0;
-            node.weight_diamond = 0;
             if(node.Element == 'X')
             {
               node.deadlock = true;
@@ -248,12 +268,7 @@ for (int row = 0; row < getRow(); row++) {
   int node = 0;
   for(auto it = begin(graph); it != end(graph) ; ++it)
   {
-    //cout << node << endl;
     node++;
-    double  beforeCount = 0;
-    double  nextCount = 0;
-    double  upCount  = 0;
-    double  downCount = 0;
 
     if (it->position.first >= 0 && it->position.first <= getRow())
     {
@@ -264,11 +279,9 @@ for (int row = 0; row < getRow(); row++) {
       {
            Edge edge;
            edge.me = &*it;
-           edge.neighbour = &graph[before - graph.begin()];
-           //cout <<"before is: "<< edge.neighbour->Element << endl;
-           //cout << "at: " << "(" <<  edge.neighbour->position.first << "," <<edge.neighbour->position.second<< ")" << endl;
-           //cout << "now: " << "(" << edge.me->position.first << "," << edge.me->position.second << ")" << endl;
-           beforeCount++;
+           edge.neighbour = &*before;
+           //edge.me = &graph[it-graph.begin()];
+           //edge.neighbour = &graph[before-graph.begin()];
            it->neighbours.push_back(edge);
       }
       else
@@ -282,14 +295,11 @@ for (int row = 0; row < getRow(); row++) {
       {
              Edge edge;
              edge.me = &*it;
-             edge.neighbour = &graph[next - graph.begin()];
-             //cout <<"next is: "<< edge.neighbour->Element << endl;
-             //cout << "at: " << "(" <<  edge.neighbour->position.first << "," <<edge.neighbour->position.second<< ")" << endl;
-             //cout << "now: " << "(" << edge.me->position.first << "," << edge.me->position.second << ")" << endl;
-             nextCount++;
+             edge.neighbour = &*next;
+             //edge.me = &graph[it-graph.begin()];
+             //edge.neighbour = &graph[next - graph.begin()];
+
              it->neighbours.push_back(edge);
-             //cout << "-next arc - added" << endl;
-             //cout <<"size: "<< it->neighbours.size() << endl;
       }
       else
       {
@@ -305,15 +315,12 @@ for (int row = 0; row < getRow(); row++) {
       auto up = std::find_if(graph.begin(), graph.end(),find_neigbour(make_pair(it->position.first,it->position.second+1)));
       if(up != graph.end()&& !isspace(graph[up-graph.begin()].Element))
       {
-             Edge edge;
-             edge.me = &*it;
-             edge.neighbour = &graph[up - graph.begin()];
-             //cout <<"up is: "<< edge.neighbour->Element << endl;
-             //cout << "at: " << "(" <<  edge.neighbour->position.first << "," <<edge.neighbour->position.second<< ")" << endl;
-             //cout << "now: " << "(" << edge.me->position.first << "," << edge.me->position.second << ")" << endl;
-             upCount++;
-             it->neighbours.push_back(edge);
-             //cout << "up - arc - added" << endl;
+          Edge edge;
+          edge.me = &*it;
+          edge.neighbour = &*up;
+          //edge.me = &graph[it-graph.begin()];
+          //edge.neighbour = &graph[up - graph.begin()];
+          it->neighbours.push_back(edge);
       }
       else
       {
@@ -325,15 +332,12 @@ for (int row = 0; row < getRow(); row++) {
 
       if(down != graph.end() && !isspace(graph[down-graph.begin()].Element))
       {
-               Edge edge;
-               edge.me = &*it;
-               edge.neighbour = &graph[down - graph.begin()];
-               //cout <<"down is: "<< edge.neighbour->Element << endl;
-               //cout << "at: " << "(" <<  edge.neighbour->position.first << "," <<edge.neighbour->position.second<< ")" << endl;
-               //cout << "now: " << "(" << edge.me->position.first << "," << edge.me->position.second << ")" << endl;
-               downCount++;
-               it->neighbours.push_back(edge);
-               //cout << " down - arc - added" << endl;
+           Edge edge;
+           edge.me = &*it;
+           edge.neighbour = &*down;
+           //edge.me = &graph[it-graph.begin()];
+           //edge.neighbour = &graph[down - graph.begin()];
+           it->neighbours.push_back(edge);
       }
       else
       {
@@ -344,34 +348,11 @@ for (int row = 0; row < getRow(); row++) {
       }
     }
 
-      //cout << "beforeCount: " << beforeCount << endl;
-      //cout << "nextCount: " << nextCount << endl;
-      //cout << "downCount: " << downCount << endl;
-      //cout << "upCount: " << upCount << endl;
-      //cout << "Size of neig: "<< it->neighbours.size() << endl;
-      //cout << endl;
-      //cout << "first occurence" << endl;
-
-
       if(it->neighbours.size() <= 1 )
       {
-        cout << "______________________________________________Hey something is wrong here ___________________________________ " << endl;
-        cout <<"("<<it->position.first << "," << it->position.second << ")" << endl;
-        cout << "beforeCount: " << beforeCount << endl;
-        cout << "nextCount: " << nextCount << endl;
-        cout << "downCount: " << downCount << endl;
-        cout << "upCount: " << upCount << endl;
-        cout << "Size of neig: "<< it->neighbours.size() << endl;
-        cout << "neighbour is: " << it->neighbours.begin()->neighbour->position.first << it->neighbours.begin()->neighbour->position.second <<  endl;
+        cout << "______________________________________________Hey something is wrong here ___________________________________ " << endl;       
       }
-
-      downCount = 0;
-      upCount = 0;
-      beforeCount = 0;
-      nextCount = 0;
   }
-  //cout << "I know who is next to me " << endl;
-  //cout << graph.begin()->Element << graph.begin()->neighbours.size() << graph.begin()->neighbours.begin()->neighbour->Element << endl;
   cout << "done" << endl;
 }
 
@@ -424,6 +405,7 @@ void Sokoban::deadlockDetection()
     for(auto node = begin(graph); node != end (graph) ;  ++node )
     {
         //cout << counter << endl;
+
         counter++;
         if (node->neighbours.size() == 4 && node->Element == '.')
         {
@@ -485,12 +467,17 @@ void Sokoban::deadlockDetection()
         if(firstCorner != NULL and secondCorner != NULL)
         {
             Node* traversingNode = firstCorner;
+
             int changeX = secondCorner->position.first - firstCorner->position.first;
             int changeY = secondCorner->position.second - firstCorner->position.second;
             vector<Node*> trace;
             bool specialCase = false;
             while(traversingNode != secondCorner)
             {
+                if(traversingNode->neighbours.size()== 0)
+                {
+                    cout  << "I got no friends " << endl;
+                }
                 for(auto findNext = begin(traversingNode->neighbours); findNext != end(traversingNode->neighbours) ; ++findNext)
                 {
                     if(findNext->me != NULL)

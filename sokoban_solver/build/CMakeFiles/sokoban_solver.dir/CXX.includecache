@@ -54,3 +54,21 @@ a_star.hpp
 iostream
 -
 
+/home/thomas/Documents/Git/AI/sokoban_solver/src/sokoban.cpp
+iostream
+-
+sokoban.h
+/home/thomas/Documents/Git/AI/sokoban_solver/src/sokoban.h
+algorithm
+-
+string
+-
+fstream
+-
+
+/home/thomas/Documents/Git/AI/sokoban_solver/src/wavefront.cpp
+wavefront.hpp
+/home/thomas/Documents/Git/AI/sokoban_solver/src/wavefront.hpp
+iostream
+-
+
