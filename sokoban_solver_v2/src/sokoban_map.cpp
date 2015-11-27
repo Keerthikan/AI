@@ -4,6 +4,43 @@
 
 using namespace std;
 
+char** sokoban_map::get_map(state_s state)
+{
+    char** return_map;
+    return_map = new char*[row];
+
+    for (int i = 0; i < row; i++) {
+        return_map[i] = new char[col];
+        for (int j = 0; j < col; j++) {
+            return_map[i][j] = map[i][j];
+        }
+    }
+    if(return_map[state.man.first][state.man.second] == '.')
+    {
+        return_map[state.man.first][state.man.second] = 'M';
+    }
+    else if(return_map[state.man.first][state.man.second] == 'G')
+    {
+        return_map[state.man.first][state.man.second] = 'm';
+    }
+    else if(return_map[state.man.first][state.man.second] == 'D')
+    {
+        return_map[state.man.first][state.man.second] = 'd';
+    }
+    for(diamond_t diamond : state.diamonds)
+    {
+        if(return_map[diamond.first][diamond.second] == '.')
+        {
+            return_map[diamond.first][diamond.second] = 'J';
+        }
+        else if(return_map[diamond.first][diamond.second] == 'G')
+        {
+            return_map[diamond.first][diamond.second] = 'j';
+        }
+    }
+    return return_map;
+}
+
 state_s sokoban_map::get_final_state()
 {
     state_s state;
@@ -59,13 +96,21 @@ void sokoban_map::deadlock_detection()
                 {
                     corners.push_back(make_pair(i,j));
                     cout << "i: "<< i << " j: " << j << endl;
-                    map[i][j] = 'D';
+                    if(map[i][j] == 'M')
+                    {
+                        map[i][j] = 'm';
+                    }
+                    else
+                    {
+                        map[i][j] = 'D';
+                    }
                     corner = 0;
 
                 }
             }
         }
     }
+
 
     for(position_t corner : corners)
     {
@@ -92,10 +137,11 @@ void sokoban_map::deadlock_detection()
             while(first_corner != second_corner)
             {
                 first_corner.second++;
-                if(map[first_corner.first][first_corner.second] != '.' && map[first_corner.first][first_corner.second] != 'D')
+                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
                 {
                     deadlock_row = false;
                 }
+
             }
 
             first_corner = corner;
@@ -104,12 +150,20 @@ void sokoban_map::deadlock_detection()
             {
                 while(first_corner != second_corner)
                 {
-                    map[first_corner.first][first_corner.second] = 'D';
+                    if(map[first_corner.first][first_corner.second] == 'M')
+                    {
+                        map[first_corner.first][first_corner.second]  = 'd';
+                    }
+                    else
+                    {
+                        map[first_corner.first][first_corner.second] = 'D';
+                    }
                     cout << "deadlocked row: " << first_corner.first << "," <<first_corner.second << endl;
                     first_corner.second++;
-
                 }
             }
+
+
 
             second_corner_found = false;
             deadlock_row = false;
@@ -136,10 +190,12 @@ void sokoban_map::deadlock_detection()
             while(first_corner != second_corner)
             {
                 first_corner.first++;
-                if(map[first_corner.first][first_corner.second] != '.' && map[first_corner.first][first_corner.second] != 'D')
+
+                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
                 {
                     deadlock_col = false;
                 }
+
             }
 
             first_corner = corner;
@@ -148,7 +204,14 @@ void sokoban_map::deadlock_detection()
             {
                 while(first_corner != second_corner)
                 {
-                    map[first_corner.first][first_corner.second] = 'D';
+                    if(map[first_corner.first][first_corner.second] == 'M')
+                    {
+                        map[first_corner.first][first_corner.second]  = 'd';
+                    }
+                    else
+                    {
+                        map[first_corner.first][first_corner.second] = 'D';
+                    }
                     cout << "deadlocked col: " << first_corner.first << "," <<first_corner.second<< endl;
                     first_corner.first++;
                 }
@@ -161,7 +224,7 @@ void sokoban_map::deadlock_detection()
     }
 
     cout << corners.size() << endl;
-
+    cout << "done" << endl;
 }
 
 state_s sokoban_map::get_child( state_s current, diamond_t diamond, position_t push_direction)
@@ -205,7 +268,7 @@ state_s sokoban_map::get_init_state()
     {
         for(int j = 0; j < col; j++)
         {
-            if(map[i][j] == 'M')
+            if(map[i][j] == 'M' ||  map[i][j] == 'd')
             {
                 state.man = make_pair(i,j);
             }
@@ -235,6 +298,10 @@ void sokoban_map::clear_map()
             {
                 map[i][j] = 'G';
             }
+            else if(map[i][j] == 'd' )
+            {
+                map[i][j] = 'D';
+            }
         }
     }
 }
@@ -256,16 +323,21 @@ void sokoban_map::print()
 
 void sokoban_map::print(state_s state)
 {
-    clear_map();
-
+    count++;
+    cout << count << endl;
     if(map[state.man.first][state.man.second] == 'G')
     {
         map[state.man.first][state.man.second] ='m';
+    }
+    else if(map[state.man.first][state.man.second] == 'D')
+    {
+        map[state.man.first][state.man.second] ='d';
     }
     else
     {
         map[state.man.first][state.man.second] ='M';
     }
+
 
     for(int i = 0; i < state.diamonds.size(); i++)
     {
@@ -294,6 +366,7 @@ void sokoban_map::print(state_s state)
 
 sokoban_map::sokoban_map(string file)
 {
+    count = 0;
     ifstream myReadFile;
     myReadFile.open(file.c_str());
     myReadFile >> col;

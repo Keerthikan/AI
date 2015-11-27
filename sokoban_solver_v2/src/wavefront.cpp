@@ -44,6 +44,10 @@ void wavefront::impose_state(state_s state)
     {
         map->get_map()[state.man.first][state.man.second] = 'm';
     }
+    else if(map->get_map()[state.man.first][state.man.second] == 'D' || map->get_map()[state.man.first][state.man.second] == 'd')
+    {
+        map->get_map()[state.man.first][state.man.second] = 'd';
+    }
     else
     {
         map->get_map()[state.man.first][state.man.second] = 'M';
@@ -75,6 +79,11 @@ void wavefront::clear_state()
             {
                 map->get_map()[i][j] = 'G';
             }
+            else if(map->get_map()[i][j] == 'd')
+            {
+                map->get_map()[i][j] = 'D';
+            }
+
         }
     }
 }
@@ -219,7 +228,81 @@ int** wavefront::get_wavefront(state_s state, char initiator, char obstacle)
         }
     }
     clear_state();
-//    print_wavefront(wf);
+    //print_wavefront(wf);
+
+    return wf;
+}
+
+int** wavefront::get_wavefront(state_s state, char initiator, char obstacle, char obstacle_)
+{
+    int** wf = init_array();
+    impose_state(state);
+
+    queue<pair<int,int>> open;
+
+    for(int i = 0; i < map->get_row(); i++)
+    {
+        for(int j = 0; j < map->get_col(); j++)
+        {
+            if(map->get_map()[i][j] == initiator)
+            {
+                wf[i][j] = 1;
+                open.push(make_pair(i,j));
+            }
+            else if(map->get_map()[i][j] == 'X' ||
+                    map->get_map()[i][j] == obstacle ||
+                    map->get_map()[i][j] == obstacle_ ||
+                    map->get_map()[i][j] == DIAMOND_ON_GOAL)
+            {
+
+                wf[i][j] = -1;
+            }
+        }
+    }
+
+    while(!open.empty())
+    {
+        pair<int,int> wave = open.front();
+        open.pop();
+        for(int i = 0; i < 4; i++)
+        {
+            switch(i)
+            {
+                case 0:
+                    if(wf[wave.first-1][wave.second] == 0)
+                    {
+                        open.push(make_pair(wave.first-1, wave.second));
+                        wf[wave.first-1][wave.second] = wf[wave.first][wave.second] + 1;
+                    }
+                    break;
+                case 1:
+                    if(wf[wave.first][wave.second+1] == 0)
+                    {
+                        open.push(make_pair(wave.first, wave.second+1));
+                        wf[wave.first][wave.second+1] = wf[wave.first][wave.second] + 1;
+                    }
+                    break;
+                case 2:
+                    if(wf[wave.first+1][wave.second] == 0)
+                    {
+                        open.push(make_pair(wave.first+1, wave.second));
+                        wf[wave.first+1][wave.second] = wf[wave.first][wave.second] + 1;
+                    }
+                    break;
+                case 3:
+                    if(wf[wave.first][wave.second-1] == 0)
+                    {
+                        open.push(make_pair(wave.first, wave.second-1));
+                        wf[wave.first][wave.second-1] = wf[wave.first][wave.second] + 1;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    clear_state();
+    //print_wavefront(wf);
 
     return wf;
 }

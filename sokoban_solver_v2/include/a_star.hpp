@@ -12,6 +12,7 @@
 #define DIAMOND         'J'
 #define DIAMOND_ON_GOAL 'j'
 #define DEADLOCK        'D'
+#define MAN_ON_DEADLOCK 'd'
 
 typedef bool (*comp)(state_s,state_s);
 
