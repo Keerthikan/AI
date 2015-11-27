@@ -31,11 +31,15 @@ struct state_s
         bool result = false;
         for(int i = 0; i < this->diamonds.size(); i++)
         {
-            if(this->diamonds.at(i) != rhs.diamonds.at(i))
+            for (diamond_t rhs_diamonds : rhs.diamonds)
             {
-                result = true;
-                break;
+                if(this->diamonds.at(i) != rhs_diamonds)
+                {
+                    result = true;
+                    break;
+                }
             }
+
         }
         return result;
     }
@@ -68,6 +72,7 @@ public:
     void deadlock_detection();
     void print();
     void print(state_s state );
+    void print_final(state_s final);
     int get_row(){ return row; }
     int get_col(){ return col; }
     char** get_map(){ return map; }

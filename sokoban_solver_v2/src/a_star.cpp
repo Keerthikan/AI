@@ -137,14 +137,18 @@ string a_star::solve()
     int count = 0;
 
 
-
-    while(&open.back() != &final)
+    //cout << "solving" << endl;
+    while(open.back() != final)
     {
-        cout << "solve" << endl;
-        sokoban.print(final);
+        //cout << "Final map" << endl;
+        //sokoban.print_final(final);
+        cout << "Child map" << endl;
         sokoban.print(open.back());
-        cout << "done" << endl;
 
+        if(open.back() != final )
+        {
+            cout << "i am outputting true - as in not equal" << endl;
+        }
         current = open.back();
         open.pop_back();
         closed.push_back(current);
@@ -172,12 +176,18 @@ string a_star::solve()
             //cout << count << endl;
         }
         children.clear();
-        //cout << "new state childred!" << endl;
-        //cout << "open: " << open.size() << " closed: " << closed.size() << endl;
-        //cout << count << endl;
+        cout << "new state childred!" << endl;
+        cout << "open: " << open.size() << " closed: " << closed.size() << endl;
+        cout << count << endl;
     }
 
-    return path;
+    cout << endl;
+    cout << endl;
+    cout << "i was solved using this state: " << endl;
+    sokoban.print(open.back());
+    cout << "final state: " << endl;
+    sokoban.print_final(final);
+    return "jubii jeg er løst";
 }
 
 bool a_star::validate_push_direction(diamond_t diamond, position_t push_direction, int** wavefront_obstacle)

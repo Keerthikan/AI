@@ -12,4 +12,4 @@ include_directories(include/)
 
 #target_link_libraries(${PROJECT_NAME} ${BOOST_SYSTEM_LIBRARY})
 
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)

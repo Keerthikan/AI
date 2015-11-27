@@ -44,8 +44,8 @@ char** sokoban_map::get_map(state_s state)
 state_s sokoban_map::get_final_state()
 {
     state_s state;
-    state.man.first = 0;
-    state.man.second = 0;
+    //state.man.first = 0;
+    //state.man.second = 0;
 
     for(int i = 0; i < row; i++)
     {
@@ -319,6 +319,36 @@ void sokoban_map::print()
         cout << endl;
     }
     cout << "----------------------------" << endl;
+}
+
+void sokoban_map::print_final(state_s final)
+{
+    count++;
+    cout << count << endl;
+
+    for(int i = 0; i < final.diamonds.size(); i++)
+    {
+        if(map[final.diamonds.at(i).first][final.diamonds.at(i).second] == 'G')
+        {
+            map[final.diamonds.at(i).first][final.diamonds.at(i).second] = 'j';
+        }
+        else
+        {
+            map[final.diamonds.at(i).first][final.diamonds.at(i).second] = 'J';
+        }
+    }
+    cout << endl;
+
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            cout << map[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << "----------------------------" << endl;
+    clear_map();
 }
 
 void sokoban_map::print(state_s state)
