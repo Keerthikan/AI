@@ -136,8 +136,6 @@ string a_star::solve()
     open.push_back(initial);
     int count = 0;
 
-
-
     while(&open.back() != &final)
     {
         cout << "solve" << endl;
@@ -176,7 +174,7 @@ string a_star::solve()
         //cout << "open: " << open.size() << " closed: " << closed.size() << endl;
         //cout << count << endl;
     }
-
+    cout << "while loop broken" << endl;
     return path;
 }
 

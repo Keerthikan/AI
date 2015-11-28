@@ -29,12 +29,16 @@ struct state_s
     bool operator!=(const state_s &rhs )
     {
         bool result = false;
-        for(int i = 0; i < this->diamonds.size(); i++)
+
+        for(diamond_t lhs_diamond : this->diamonds)
         {
-            if(this->diamonds.at(i) != rhs.diamonds.at(i))
+            for(diamond_t rhs_diamond : rhs.diamonds)
             {
-                result = true;
-                break;
+                if(lhs_diamond != rhs_diamond)
+                {
+                    result = true;
+                    break;
+                }
             }
         }
         return result;

@@ -26,6 +26,18 @@ vector
 sokoban_map.hpp
 ../include/sokoban_map.hpp
 
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/a_star.cpp
+a_star.hpp
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/a_star.hpp
+iostream
+-
+queue
+-
+algorithm
+-
+math.h
+-
+
 /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/main.cpp
 iostream
 -
@@ -35,6 +47,14 @@ wavefront.hpp
 /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/wavefront.hpp
 a_star.hpp
 /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/a_star.hpp
+
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/sokoban_map.cpp
+sokoban_map.hpp
+/home/thomas/Documents/Git/AI/sokoban_solver_v2/src/sokoban_map.hpp
+fstream
+-
+iostream
+-
 
 /home/thomas/Documents/Git/AI/sokoban_solver_v2/src/wavefront.cpp
 wavefront.hpp
