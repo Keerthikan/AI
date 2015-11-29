@@ -120,7 +120,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
 
 bool a_star::compare_heuristic(state_s A, state_s B)
 {
-    return (A.heuristic < B.heuristic);
+    return (A.heuristic > B.heuristic);
 }
 
 string a_star::solve()
@@ -134,6 +134,7 @@ string a_star::solve()
     vector<state_s>::iterator closed_it;
     initial.parent = NULL;
     open.push_back(initial);
+    cout << initial.heuristic << endl;
     int count = 0;
 
 
@@ -143,7 +144,7 @@ string a_star::solve()
         //cout << "Final map" << endl;
         //sokoban.print_final(final);
         cout << "Child map" << endl;
-        sokoban.print(open.back());
+        //sokoban.print(open.back());
 
         if(open.back() != final )
         {
@@ -152,6 +153,15 @@ string a_star::solve()
         current = open.back();
         open.pop_back();
         closed.push_back(current);
+
+        int count = 0 ;
+        for(state_s nodes: open)
+        {
+          cout << "count: " << count << endl;
+          cout <<   nodes.heuristic << endl;
+          sokoban.print(nodes);
+          count++;
+        }
 
         get_children(current, children);
 
@@ -245,6 +255,6 @@ void a_star::get_heuristic(state_s &child, state_s &parent)
         diamond_to_goal_cost = wavefront_ptr.get_wavefront(child,GOAL)[diamond.first][diamond.second];
         heuristic += diamond_to_goal_cost;
     }
-    move_cost = sqrt(pow((child.man.first-parent.man.first),2)+pow((child.man.second-parent.man.second),2));
-    child.heuristic += move_cost + parent.heuristic + heuristic;
+    move_cost = (abs((child.man.first-parent.man.first))+abs((child.man.second-parent.man.second)));
+    child.heuristic += move_cost /*+ parent.heuristic */ + heuristic;
 }

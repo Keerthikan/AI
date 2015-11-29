@@ -18,6 +18,6 @@ int main()
     wf.get_wavefront(init, 'G');
 
     a_star solver(init,final,wf,map);
-    cout << solver.solve()<< endl;
+    solver.solve();
     return 0;
 }

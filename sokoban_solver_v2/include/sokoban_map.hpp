@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 typedef std::pair<int,int> position_t;
 typedef std::pair<int,int> diamond_t;
@@ -28,20 +29,27 @@ struct state_s
 
     bool operator!=(const state_s &rhs )
     {
-        bool result = false;
-        for(int i = 0; i < this->diamonds.size(); i++)
+        bool return_val = true;
+        for (diamond_t diamond: this->diamonds)
         {
-            for (diamond_t rhs_diamonds : rhs.diamonds)
+            if(rhs.diamonds.back() != diamond)
             {
-                if(this->diamonds.at(i) != rhs_diamonds)
+                if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
                 {
-                    result = true;
+                    return_val = false;
+                }
+                else
+                {
+                    return_val = true;
                     break;
                 }
             }
-
+            else
+            {
+                return_val = false;
+            }
         }
-        return result;
+        return return_val;
     }
 
     bool operator()(const state_s &obj)
