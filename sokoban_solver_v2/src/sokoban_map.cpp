@@ -353,8 +353,8 @@ void sokoban_map::print_final(state_s final)
 
 void sokoban_map::print(state_s state)
 {
-    count++;
-    cout << count << endl;
+    //count++;
+    //cout << count << endl;
     if(map[state.man.first][state.man.second] == 'G')
     {
         map[state.man.first][state.man.second] ='m';

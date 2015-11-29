@@ -46,8 +46,8 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                         {
                             child.man = diamond;
                             child.diamonds.at(diamond_num).first += 1;
-                            //get_heuristic(child, parent);
                             children.push_back(child);
+                            //get_heuristic(child, parent);
                             //sokoban.print(child);
                         }
 
@@ -61,8 +61,8 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                         {
                             child.man = diamond;
                             child.diamonds.at(diamond_num).second -= 1;
-                            //get_heuristic(child, parent);
                             children.push_back(child);
+                            //get_heuristic(child, parent);
                             //sokoban.print(child);
                         }
 
@@ -76,8 +76,8 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                         {
                             child.man = diamond;
                             child.diamonds.at(diamond_num).first -= 1;
-                            //get_heuristic(child, parent);
                             children.push_back(child);
+                            //get_heuristic(child, parent);
                             //sokoban.print(child);
                         }
 
@@ -91,8 +91,8 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                         {
                             child.man = diamond;
                             child.diamonds.at(diamond_num).second += 1;
-                            //get_heuristic(child, parent);
                             children.push_back(child);
+                            //get_heuristic(child, parent);
                             //sokoban.print(child);
                         }
 
@@ -127,7 +127,6 @@ string a_star::solve()
 
     while(open.back() != final)
     {
-<<<<<<< HEAD
         //cout << "Final map" << endl;
         //sokoban.print_final(final);
         cout << "Child map" << endl;
@@ -137,8 +136,6 @@ string a_star::solve()
         {
             cout << "i am outputting true - as in not equal" << endl;
         }
-=======
->>>>>>> 8255f2c60f01a4f06b82f83fe1c9d4074e28563c
         current = open.back();
         open.pop_back();
         closed.push_back(current);
@@ -154,21 +151,30 @@ string a_star::solve()
 
         get_children(current, children);
 
+        /*cout << "Current state info:" << endl;
+        sokoban.print(current);
+        cout << "Cost: " << current.cost << endl;
+
+        cout << "-------------------" << endl;
+        */
+
         for(state_s child : children)
         {
-            sokoban.print(open.back());
+            child.cost = current.cost + get_heuristic(child);
+
             open_it = find_if(open.begin(), open.end(), state_s(child));
-            if( open_it != open.end() )
+            if( open_it != open.end() && child.cost < get_heuristic(child)) //Not certain
             {
                 open.erase(open_it);
             }
             closed_it = find_if(closed.begin(), closed.end(), state_s(child));
-            if( closed_it != closed.end() )
+            if( closed_it != closed.end() && child.cost < get_heuristic(child))
             {
                 closed.erase(closed_it);
             }
             if( open_it == open.end() && closed_it == closed.end())
             {
+                child.cost = get_heuristic(child);
                 child.parent = &current;
                 open.push_back(child);
             }
@@ -182,8 +188,10 @@ string a_star::solve()
     cout << endl;
     cout << "i was solved using this state: " << endl;
     sokoban.print(open.back());
+    state_s final_state = open.back();
     cout << "final state: " << endl;
     sokoban.print_final(final);
+    //(print_solution(&final_state);
     return "jubii jeg er løst";
 }
 
@@ -233,9 +241,9 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
     return result;
 }
 
-void a_star::get_heuristic(state_s &child, state_s &parent)
+int a_star::get_heuristic(state_s &child)
 {
-    int diamond_to_goal_cost, move_cost, heuristic = 0;
+    int diamond_to_goal_cost, heuristic = 0;
 
     for(diamond_t diamond : child.diamonds)
     {
@@ -243,5 +251,19 @@ void a_star::get_heuristic(state_s &child, state_s &parent)
         heuristic += diamond_to_goal_cost;
     }
     move_cost = (abs((child.man.first-parent.man.first))+abs((child.man.second-parent.man.second)));
-    child.heuristic += move_cost /*+ parent.heuristic */ + heuristic;
+    return move_cost;
+}
+
+int a_star::get_move_cost(state_s &child, state_s &parent)
+{
+    return sqrt(pow((child.man.first-parent.man.first),2)+pow((child.man.second-parent.man.second),2));
+}
+
+void a_star::print_solution(state_s *final_state)
+{
+    while(final_state->parent != NULL)
+    {
+        print_solution(final_state->parent);
+    }
+    sokoban.print(*final_state);
 }
