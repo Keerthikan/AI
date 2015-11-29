@@ -42,14 +42,11 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     push_direction = make_pair(diamond.first-1,diamond.second);
                     if(wavefront_obstacle[diamond.first-1][diamond.second] > 0)
                     {
-                        //cout << "case 0: " << endl;
-                        //cout << "wavefront > 0!" << endl;
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
-                            //cout << "validate push direction true!" << endl;
                             child.man = diamond;
                             child.diamonds.at(diamond_num).first += 1;
-                            get_heuristic(child, parent);
+                            //get_heuristic(child, parent);
                             children.push_back(child);
                             //sokoban.print(child);
                         }
@@ -60,14 +57,11 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     push_direction = make_pair(diamond.first,diamond.second+1);
                     if(wavefront_obstacle[diamond.first][diamond.second+1] > 0)
                     {
-                        //cout << "case 1: " << endl;
-                        //cout << "wavefront > 0!" << endl;
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
-                            //cout << "validate push direction true!" << endl;
                             child.man = diamond;
                             child.diamonds.at(diamond_num).second -= 1;
-                            get_heuristic(child, parent);
+                            //get_heuristic(child, parent);
                             children.push_back(child);
                             //sokoban.print(child);
                         }
@@ -78,14 +72,11 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     push_direction = make_pair(diamond.first+1,diamond.second);
                     if(wavefront_obstacle[diamond.first+1][diamond.second] > 0)
                     {
-                        //cout << "case 2: " << endl;
-                        //cout << "wavefront > 0!" << endl;
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
-                            //cout << "validate push direction true!" << endl;
                             child.man = diamond;
                             child.diamonds.at(diamond_num).first -= 1;
-                            get_heuristic(child, parent);
+                            //get_heuristic(child, parent);
                             children.push_back(child);
                             //sokoban.print(child);
                         }
@@ -96,14 +87,11 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     push_direction = make_pair(diamond.first,diamond.second-1);
                     if(wavefront_obstacle[diamond.first][diamond.second-1] > 0)
                     {
-                        //cout << "case 3: " << endl;
-                        //cout << "wavefront > 0!" << endl;
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
-                            //cout << "validate push direction true!" << endl;
                             child.man = diamond;
                             child.diamonds.at(diamond_num).second += 1;
-                            get_heuristic(child, parent);
+                            //get_heuristic(child, parent);
                             children.push_back(child);
                             //sokoban.print(child);
                         }
@@ -137,10 +125,9 @@ string a_star::solve()
     cout << initial.heuristic << endl;
     int count = 0;
 
-
-    //cout << "solving" << endl;
     while(open.back() != final)
     {
+<<<<<<< HEAD
         //cout << "Final map" << endl;
         //sokoban.print_final(final);
         cout << "Child map" << endl;
@@ -150,6 +137,8 @@ string a_star::solve()
         {
             cout << "i am outputting true - as in not equal" << endl;
         }
+=======
+>>>>>>> 8255f2c60f01a4f06b82f83fe1c9d4074e28563c
         current = open.back();
         open.pop_back();
         closed.push_back(current);
@@ -167,6 +156,7 @@ string a_star::solve()
 
         for(state_s child : children)
         {
+            sokoban.print(open.back());
             open_it = find_if(open.begin(), open.end(), state_s(child));
             if( open_it != open.end() )
             {
@@ -186,9 +176,6 @@ string a_star::solve()
             //cout << count << endl;
         }
         children.clear();
-        cout << "new state childred!" << endl;
-        cout << "open: " << open.size() << " closed: " << closed.size() << endl;
-        cout << count << endl;
     }
 
     cout << endl;

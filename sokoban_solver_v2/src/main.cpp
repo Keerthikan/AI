@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    sokoban_map map("/home/student/AI/sokoban_solver_v2/maps/map.txt");
+    sokoban_map map("/home/thomas/Documents/Git/AI/sokoban_solver_v2/maps/heuristictest.txt");
     map.deadlock_detection();
 
     state_s init = map.get_init_state();

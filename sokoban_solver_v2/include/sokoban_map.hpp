@@ -32,6 +32,7 @@ struct state_s
         bool return_val = true;
         for (diamond_t diamond: this->diamonds)
         {
+<<<<<<< HEAD
             if(rhs.diamonds.back() != diamond)
             {
                 if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
@@ -48,6 +49,20 @@ struct state_s
             {
                 return_val = false;
             }
+=======
+            for (diamond_t rhs_diamond : rhs.diamonds)
+            {
+                if(this->diamonds.at(i) != rhs_diamond)
+                {
+                    result = true;
+                }
+                else if(this->diamonds.at(i) == rhs_diamond)
+                {
+                    result = false;
+                    break;
+                }
+            }
+>>>>>>> 8255f2c60f01a4f06b82f83fe1c9d4074e28563c
         }
         return return_val;
     }
