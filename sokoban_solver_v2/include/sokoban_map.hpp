@@ -19,32 +19,33 @@ struct state_s
             this->diamonds.push_back(diamond);
         }
         this->heuristic = obj.heuristic;
+        this->cost = obj.cost;
     }
 
     position_t man;
     std::vector<diamond_t> diamonds;
-    int heuristic, move_cost;
+    int heuristic, cost;
     state_s *parent;
 
     bool operator!=(const state_s &rhs )
     {
-        bool result = false;
+        int result = 0;
         for(int i = 0; i < this->diamonds.size(); i++)
         {
             for (diamond_t rhs_diamond : rhs.diamonds)
             {
-                if(this->diamonds.at(i) != rhs_diamond)
+                if(this->diamonds.at(i) == rhs_diamond)
                 {
-                    result = true;
-                }
-                else if(this->diamonds.at(i) == rhs_diamond)
-                {
-                    result = false;
+                    result++;
                     break;
                 }
             }
         }
-        return result;
+        if(result == this->diamonds.size())
+        {
+            return false;
+        }
+        return true;
     }
 
     bool operator()(const state_s &obj)
@@ -54,12 +55,16 @@ struct state_s
         {
             for(int i = 0; i < this->diamonds.size(); i++)
             {
-                this->diamonds.at(i) == obj.diamonds.at(i) ? ret_val++ : ret_val--;
+                for (diamond_t obj_diamond : obj.diamonds)
+                {
+                    if(this->diamonds.at(i) == obj_diamond){ ret_val++; }
+                }
             }
-            if(ret_val == this->diamonds.size())
+            if(ret_val == this->diamonds.size()) { return true; }
+            /*if(ret_val == this->diamonds.size())
             {
                 return this->heuristic < obj.heuristic;
-            }
+            }*/
         }
         return false;
     }
