@@ -25,10 +25,10 @@ struct state_s
 
     position_t man;
     std::vector<diamond_t> diamonds;
-    int heuristic, cost;
+    int heuristic = 0, cost = 0;
     state_s *parent;
 
-    bool operator!=(const state_s &rhs )
+    bool operator!=(const state_s &rhs ) const
     {
         bool return_val = true;
         for (diamond_t diamond: this->diamonds)
@@ -65,11 +65,10 @@ struct state_s
                     if(this->diamonds.at(i) == obj_diamond){ ret_val++; }
                 }
             }
-            if(ret_val == this->diamonds.size()) { return true; }
-            /*if(ret_val == this->diamonds.size())
+            if(ret_val == this->diamonds.size())
             {
                 return this->heuristic < obj.heuristic;
-            }*/
+            }
         }
         return false;
     }

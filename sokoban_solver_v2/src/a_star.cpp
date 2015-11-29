@@ -1,10 +1,22 @@
 #include "a_star.hpp"
 #include <iostream>
 #include <queue>
+#include <map>
 #include <algorithm>
 #include <math.h>
 
 using namespace std;
+
+string a_star::stringify(state_s state)
+{
+    string ret_val;
+    for(diamond_t diamond : state.diamonds)
+    {
+        ret_val += to_string(diamond.first) + to_string(diamond.second);
+    }
+    ret_val += to_string(state.man.first) + to_string(state.man.second);
+    return ret_val;
+}
 
 a_star::a_star(state_s initial, state_s final, wavefront &wf, sokoban_map &sokoban)
 {
@@ -26,6 +38,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
         {
             position_t push_direction;
             state_s child = parent;
+            child.heuristic = 0;
             int **wavefront_obstacle;
             if(sokoban.get_map(child)[child.man.first][child.man.second] == 'd')
             {
@@ -116,79 +129,84 @@ string a_star::solve()
     string path;
     state_s current;
 
-    vector<state_s> open, closed, children;
+    vector<state_s> children;
+    priority_queue<state_s, vector<state_s>, comp> open(compare_heuristic);
+    map<string, state_s> closed;
 
     vector<state_s>::iterator open_it;
-    vector<state_s>::iterator closed_it;
+    //vector<state_s>::iterator closed_it;
+
     initial.parent = NULL;
-    open.push_back(initial);
+    open.push(initial);
     cout << initial.heuristic << endl;
-    int count = 0;
+    int cost = 0, count = 0;
 
-    while(open.back() != final)
+    while(open.top() != final)
     {
-        //cout << "Final map" << endl;
-        //sokoban.print_final(final);
-        cout << "Child map" << endl;
-        //sokoban.print(open.back());
-
-        if(open.back() != final )
-        {
-            cout << "i am outputting true - as in not equal" << endl;
-        }
-        current = open.back();
-        open.pop_back();
-        closed.push_back(current);
-
-        int count = 0 ;
-        for(state_s nodes: open)
-        {
-          cout << "count: " << count << endl;
-          cout <<   nodes.heuristic << endl;
-          sokoban.print(nodes);
-          count++;
-        }
+        count++;
+        current = open.top();
+        open.pop();
+        closed.emplace(stringify(current), current);
 
         get_children(current, children);
 
-        /*cout << "Current state info:" << endl;
-        sokoban.print(current);
-        cout << "Cost: " << current.cost << endl;
+//        cout << "Current state info:" << endl;
+//        sokoban.print(current);
+//        cout << "Cost: " << current.cost << endl;
+//        cout << "Rank: " << current.heuristic << endl;
+//        cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
 
-        cout << "-------------------" << endl;
-        */
 
         for(state_s child : children)
         {
-            child.cost = current.cost + get_heuristic(child);
+            cost = current.cost + get_move_cost(child, current);
 
-            open_it = find_if(open.begin(), open.end(), state_s(child));
-            if( open_it != open.end() && child.cost < get_heuristic(child)) //Not certain
+            /*open_it = find_if(open.begin(), open.end(), state_s(child));
+            if( open_it != open.end() && cost < open.at(open_it-open.begin()).cost)
             {
+                cout << "erased from open" << endl;
                 open.erase(open_it);
-            }
-            closed_it = find_if(closed.begin(), closed.end(), state_s(child));
-            if( closed_it != closed.end() && child.cost < get_heuristic(child))
+            }*/
+            //closed_it = find_if(closed.begin(), closed.end(), state_s(child));
+            if( closed.find(stringify(child)) != closed.end() && cost < closed.find(stringify(child))->second.cost)
             {
-                closed.erase(closed_it);
+                closed.erase(stringify(child));
+//                cout << "erased from closed" << endl;
+                continue;
             }
-            if( open_it == open.end() && closed_it == closed.end())
+            //open_it = find_if(open.begin(), open.end(), state_s(child));
+            if( closed.find(stringify(child)) == closed.end()) //is end() == state?
             {
-                child.cost = get_heuristic(child);
+                child.cost = cost;
+                child.heuristic = child.cost + get_heuristic(child);
                 child.parent = &current;
-                open.push_back(child);
+                open.push(child);
+//                cout << "child pushed0" << endl;
             }
-            sort(open.begin(), open.end(), compare_heuristic);
-            //cout << count << endl;
+            //sort(open.begin(), open.end(), compare_heuristic);
+
+//            sokoban.print(child);
+//            cout << endl;
+//            cout << "get_heuristic() = " << get_heuristic(child) << endl;
+//            cout << "Cost: " << child.cost << endl;
+//            cout << "Rank: " << child.heuristic << endl;
+//            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
+            /*cout << open.back().heuristic << endl;
+            for(state_s state : open)
+            {
+                cout << state.heuristic << " : " ;
+            }
+            cout << endl;*/
         }
+//        cout << "------------------------------------" << endl;
         children.clear();
     }
+    cout << count << endl;
 
     cout << endl;
     cout << endl;
     cout << "i was solved using this state: " << endl;
-    sokoban.print(open.back());
-    state_s final_state = open.back();
+    sokoban.print(open.top());
     cout << "final state: " << endl;
     sokoban.print_final(final);
     //(print_solution(&final_state);
@@ -250,13 +268,20 @@ int a_star::get_heuristic(state_s &child)
         diamond_to_goal_cost = wavefront_ptr.get_wavefront(child,GOAL)[diamond.first][diamond.second];
         heuristic += diamond_to_goal_cost;
     }
-    move_cost = (abs((child.man.first-parent.man.first))+abs((child.man.second-parent.man.second)));
-    return move_cost;
+    return heuristic;
 }
 
 int a_star::get_move_cost(state_s &child, state_s &parent)
 {
-    return sqrt(pow((child.man.first-parent.man.first),2)+pow((child.man.second-parent.man.second),2));
+    for(int i = 0; i < child.diamonds.size(); i++)
+    {
+        if(child.diamonds.at(i) != parent.diamonds.at(i))
+        {
+            return wavefront_ptr.get_wavefront(parent,MAN,DIAMOND)[parent.diamonds.at(i).first + (parent.diamonds.at(i).first-child.diamonds.at(i).first)]
+                                                           [parent.diamonds.at(i).second + (parent.diamonds.at(i).second-child.diamonds.at(i).second)];
+        }
+    }
+    return 0;
 }
 
 void a_star::print_solution(state_s *final_state)

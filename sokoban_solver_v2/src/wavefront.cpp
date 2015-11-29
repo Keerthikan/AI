@@ -99,6 +99,11 @@ int** wavefront::get_wavefront(state_s state, char initiator)
     {
         for(int j = 0; j < map->get_col(); j++)
         {
+            if(initiator == 'G' && map->get_map()[i][j] == 'j')
+            {
+                wf[i][j] = 1;
+                open.push(make_pair(i,j));
+            }
             if(map->get_map()[i][j] == initiator)
             {
                 wf[i][j] = 1;

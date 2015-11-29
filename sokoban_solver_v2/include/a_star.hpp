@@ -5,6 +5,7 @@
 #include "wavefront.hpp"
 
 #include <string>
+#include <set>
 
 #define GOAL            'G'
 #define MAN             'M'
@@ -14,7 +15,7 @@
 #define DEADLOCK        'D'
 #define MAN_ON_DEADLOCK 'd'
 
-typedef bool (*comp)(state_s,state_s);
+typedef bool (*comp)(state_s, state_s);
 
 class a_star
 {
@@ -24,6 +25,7 @@ public:
 private:
     static bool compare_heuristic(state_s A, state_s B);
     bool validate_push_direction(diamond_t diamond, position_t position, int** wavefront_obstacle);
+    std::string stringify(state_s state);
     int get_heuristic(state_s &child);
     int get_move_cost(state_s &child, state_s &parent);
     position_t get_push_direction(diamond_t diamond, int** wavefront_obstacle);

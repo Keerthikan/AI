@@ -72,22 +72,22 @@ void sokoban_map::deadlock_detection()
         {
             if(map[i][j] == '.')
             {
-                if(map[i-1][j] == 'X' &&  map[i][j-1] == 'X')
+                if(map[i-1][j] == 'X' &&  map[i][j-1] == 'X'  && map[i-1][j-1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map[i+1][j] == 'X' &&  map[i][j-1] == 'X')
+                if(map[i+1][j] == 'X' &&  map[i][j-1] == 'X'&& map[i+1][j-1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map[i+1][j] == 'X' &&  map[i][j+1] == 'X')
+                if(map[i+1][j] == 'X' &&  map[i][j+1] == 'X' && map[i+1][j+1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map[i-1][j] == 'X' &&  map[i][j+1] == 'X')
+                if(map[i-1][j] == 'X' &&  map[i][j+1] == 'X' && map[i-1][j+1] == 'X' )
                 {
                     corner++;
                 }
@@ -154,6 +154,10 @@ void sokoban_map::deadlock_detection()
                     {
                         map[first_corner.first][first_corner.second]  = 'd';
                     }
+                    else if(map[first_corner.first][first_corner.second] == 'X')
+                    {
+                        map[first_corner.first][first_corner.second]  = 'X';
+                    }
                     else
                     {
                         map[first_corner.first][first_corner.second] = 'D';
@@ -207,6 +211,10 @@ void sokoban_map::deadlock_detection()
                     if(map[first_corner.first][first_corner.second] == 'M')
                     {
                         map[first_corner.first][first_corner.second]  = 'd';
+                    }
+                    else if(map[first_corner.first][first_corner.second] == 'X')
+                    {
+                        map[first_corner.first][first_corner.second]  = 'X';
                     }
                     else
                     {
@@ -390,7 +398,7 @@ void sokoban_map::print(state_s state)
         }
         cout << endl;
     }
-    cout << "----------------------------" << endl;
+    //cout << "----------------------------" << endl;
     clear_map();
 }
 
