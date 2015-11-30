@@ -28,6 +28,32 @@ struct state_s
     int heuristic = 0, cost = 0;
     state_s *parent;
 
+    bool operator == (const state_s &rhs) const
+    {
+        bool return_val = false;
+        for (diamond_t diamond: this->diamonds)
+        {
+            if(rhs.diamonds.back() != diamond)
+            {
+                if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
+                {
+                    return_val = true;
+                }
+                else
+                {
+                    return_val = false;
+                    break;
+                }
+            }
+            else
+            {
+                return_val = true;
+            }
+        }
+        return return_val;
+
+    }
+
     bool operator!=(const state_s &rhs ) const
     {
         bool return_val = true;

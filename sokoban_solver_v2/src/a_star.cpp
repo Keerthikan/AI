@@ -3,6 +3,7 @@
 #include <queue>
 #include <map>
 #include <algorithm>
+#include <set>
 #include <math.h>
 
 using namespace std;
@@ -130,22 +131,23 @@ string a_star::solve()
     state_s current;
 
     vector<state_s> children;
-    priority_queue<state_s, vector<state_s>, comp> open(compare_heuristic);
+    //priority_queue<state_s, vector<state_s>, comp> open(compare_heuristic);
+    std::set<state_s,comp> open(compare_heuristic);
     map<string, state_s> closed;
 
-    vector<state_s>::iterator open_it;
+    //vector<state_s>::iterator open_it;
     //vector<state_s>::iterator closed_it;
 
     initial.parent = NULL;
-    open.push(initial);
+    open.insert(initial);
     cout << initial.heuristic << endl;
     int cost = 0, count = 0;
 
-    while(open.top() != final)
+    while(*open.begin() != final)
     {
         count++;
-        current = open.top();
-        open.pop();
+        current = *open.begin();
+        open.erase(*open.begin());
         closed.emplace(stringify(current), current);
 
         get_children(current, children);
@@ -161,12 +163,13 @@ string a_star::solve()
         {
             cost = current.cost + get_move_cost(child, current);
 
-            /*open_it = find_if(open.begin(), open.end(), state_s(child));
-            if( open_it != open.end() && cost < open.at(open_it-open.begin()).cost)
+            //open_it = find_if(open.begin(), open.end(), state_s(child));
+            auto open_it = open.find(child);
+            if( open.find(child) != open.end() && cost < open_it->cost)
             {
                 cout << "erased from open" << endl;
-                open.erase(open_it);
-            }*/
+                open.erase(child);
+            }
             //closed_it = find_if(closed.begin(), closed.end(), state_s(child));
             if( closed.find(stringify(child)) != closed.end() && cost < closed.find(stringify(child))->second.cost)
             {
@@ -175,22 +178,23 @@ string a_star::solve()
                 continue;
             }
             //open_it = find_if(open.begin(), open.end(), state_s(child));
-            if( closed.find(stringify(child)) == closed.end()) //is end() == state?
+            if(open.find(child) == open.end() && closed.find(stringify(child)) == closed.end()) //is end() == state?
             {
                 child.cost = cost;
                 child.heuristic = child.cost + get_heuristic(child);
                 child.parent = &current;
-                open.push(child);
+                open.insert(child);
 //                cout << "child pushed0" << endl;
             }
             //sort(open.begin(), open.end(), compare_heuristic);
 
-//            sokoban.print(child);
-//            cout << endl;
-//            cout << "get_heuristic() = " << get_heuristic(child) << endl;
-//            cout << "Cost: " << child.cost << endl;
-//            cout << "Rank: " << child.heuristic << endl;
-//            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
+            sokoban.print(child);
+            cout << endl;
+            cout << "get_heuristic() = " << get_heuristic(child) << endl;
+            cout << "Cost: " << child.cost << endl;
+            cout << "Rank: " << child.heuristic << endl;
+            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
+
             /*cout << open.back().heuristic << endl;
             for(state_s state : open)
             {
@@ -198,7 +202,7 @@ string a_star::solve()
             }
             cout << endl;*/
         }
-//        cout << "------------------------------------" << endl;
+        cout << "------------------------------------" << endl;
         children.clear();
     }
     cout << count << endl;
@@ -206,7 +210,7 @@ string a_star::solve()
     cout << endl;
     cout << endl;
     cout << "i was solved using this state: " << endl;
-    sokoban.print(open.top());
+    sokoban.print(*open.begin());
     cout << "final state: " << endl;
     sokoban.print_final(final);
     //(print_solution(&final_state);
