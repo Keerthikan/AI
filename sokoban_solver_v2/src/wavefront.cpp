@@ -5,6 +5,15 @@
 
 using namespace std;
 
+void wavefront::delete_wavefront(int** wave_map)
+{
+    for(int i = 0; i < map->get_row(); i++)
+    {
+        delete wave_map[i];
+    }
+    delete wave_map;
+}
+
 void wavefront::print_wavefront(int **wf)
 {
     for(int i = 0; i < map->get_row(); i++)

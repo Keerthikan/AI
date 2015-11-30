@@ -248,7 +248,7 @@ state_s sokoban_map::get_child( state_s current, diamond_t diamond, position_t p
     }
     else if(dif_col != 0)
     {
-        new_diamond_position = make_pair(diamond.first,diamond.second + + (dif_col *(-1)));
+        new_diamond_position = make_pair(diamond.first,diamond.second + (dif_col *(-1)));
     }
 
     int diamond_position;

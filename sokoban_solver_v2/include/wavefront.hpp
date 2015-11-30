@@ -12,6 +12,7 @@ public:
     int** get_wavefront(state_s state, char initiator);
     int** get_wavefront(state_s state, char initiator, char obstacle);
     int** get_wavefront(state_s state, char initiator, char obstacle, char obstacle_);
+    void delete_wavefront(int** wave_map);
 private:
     void impose_state(state_s state);
     void clear_state();

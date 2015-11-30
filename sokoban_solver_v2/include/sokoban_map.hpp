@@ -6,8 +6,8 @@
 #include <vector>
 #include <algorithm>
 
-typedef std::pair<int,int> position_t;
-typedef std::pair<int,int> diamond_t;
+typedef std::pair<char,char> position_t;
+typedef std::pair<char,char> diamond_t;
 
 struct state_s
 {
@@ -25,7 +25,7 @@ struct state_s
 
     position_t man;
     std::vector<diamond_t> diamonds;
-    int heuristic = 0, cost = 0;
+    char heuristic = 0, cost = 0;
     state_s *parent;
 
     bool operator!=(const state_s &rhs ) const
@@ -33,8 +33,7 @@ struct state_s
         bool return_val = true;
         for (diamond_t diamond: this->diamonds)
         {
-            if(rhs.diamonds.back() != diamond)
-            {
+
                 if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
                 {
                     return_val = false;
@@ -44,13 +43,40 @@ struct state_s
                     return_val = true;
                     break;
                 }
-            }
-            else
-            {
-                return_val = false;
-            }
+
         }
         return return_val;
+    }
+
+
+    bool operator==(const state_s &rhs ) const
+    {
+        bool ret_val = false;
+        if(this->man.first == rhs.man.first && this->man.second == rhs.man.second )
+        {
+            ret_val = true;
+
+            for (diamond_t diamond: this->diamonds)
+            {
+
+                    if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
+                    {
+                        ret_val= true;
+                    }
+                    else
+                    {
+                        ret_val= false;
+                        break;
+                    }
+            }
+
+            return ret_val;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     bool operator()(const state_s &obj)
