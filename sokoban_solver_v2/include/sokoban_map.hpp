@@ -9,6 +9,8 @@
 typedef std::pair<int,int> position_t;
 typedef std::pair<int,int> diamond_t;
 
+typedef std::vector<char> map_row_t;
+typedef std::vector<map_row_t> map_t;
 struct state_s
 {
     state_s() = default;
@@ -28,39 +30,12 @@ struct state_s
     int heuristic = 0, cost = 0;
     state_s *parent;
 
-    bool operator == (const state_s &rhs) const
-    {
-        bool return_val = false;
-        for (diamond_t diamond: this->diamonds)
-        {
-            if(rhs.diamonds.back() != diamond)
-            {
-                if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
-                {
-                    return_val = true;
-                }
-                else
-                {
-                    return_val = false;
-                    break;
-                }
-            }
-            else
-            {
-                return_val = true;
-            }
-        }
-        return return_val;
-
-    }
-
     bool operator!=(const state_s &rhs ) const
     {
         bool return_val = true;
         for (diamond_t diamond: this->diamonds)
         {
-            if(rhs.diamonds.back() != diamond)
-            {
+
                 if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
                 {
                     return_val = false;
@@ -70,13 +45,40 @@ struct state_s
                     return_val = true;
                     break;
                 }
-            }
-            else
-            {
-                return_val = false;
-            }
+
         }
         return return_val;
+    }
+
+
+    bool operator==(const state_s &rhs ) const
+    {
+        bool ret_val = false;
+        if(this->man.first == rhs.man.first && this->man.second == rhs.man.second )
+        {
+            ret_val = true;
+
+            for (diamond_t diamond: this->diamonds)
+            {
+
+                    if (std::find(rhs.diamonds.begin(), rhs.diamonds.end(),diamond) != rhs.diamonds.end())
+                    {
+                        ret_val= true;
+                    }
+                    else
+                    {
+                        ret_val= false;
+                        break;
+                    }
+            }
+
+            return ret_val;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     bool operator()(const state_s &obj)
@@ -113,15 +115,15 @@ public:
     void print_final(state_s final);
     int get_row(){ return row; }
     int get_col(){ return col; }
-    char** get_map(){ return map; }
-    char** get_map(state_s state);
+    map_t get_map(){ return map; }
+    map_t get_map(state_s state);
     state_s get_child( state_s current, diamond_t diamond, position_t push_direction);
 
 private:
     unsigned long int count;
     int col, row, diamonds;
     void clear_map();
-    char** map;
+    map_t map;
 
 };
 #endif
