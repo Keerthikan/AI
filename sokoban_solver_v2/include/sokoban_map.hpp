@@ -6,11 +6,9 @@
 #include <vector>
 #include <algorithm>
 
-typedef std::pair<int,int> position_t;
-typedef std::pair<int,int> diamond_t;
+typedef std::pair<char,char> position_t;
+typedef std::pair<char,char> diamond_t;
 
-typedef std::vector<char> map_row_t;
-typedef std::vector<map_row_t> map_t;
 struct state_s
 {
     state_s() = default;
@@ -27,7 +25,7 @@ struct state_s
 
     position_t man;
     std::vector<diamond_t> diamonds;
-    int heuristic = 0, cost = 0;
+    char heuristic = 0, cost = 0;
     state_s *parent;
 
     bool operator!=(const state_s &rhs ) const
@@ -115,15 +113,16 @@ public:
     void print_final(state_s final);
     int get_row(){ return row; }
     int get_col(){ return col; }
-    map_t get_map(){ return map; }
-    map_t get_map(state_s state);
+    void delete_map(char** state_map);
+    char** get_map(){ return map; }
+    char** get_map(state_s state);
     state_s get_child( state_s current, diamond_t diamond, position_t push_direction);
 
 private:
     unsigned long int count;
     int col, row, diamonds;
     void clear_map();
-    map_t map;
+    char** map;
 
 };
 #endif

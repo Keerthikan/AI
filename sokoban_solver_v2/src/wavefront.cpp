@@ -5,54 +5,71 @@
 
 using namespace std;
 
-void wavefront::print_wavefront(matrix_t wf)
+void wavefront::delete_wavefront(int** wave_map)
+{
+    for(int i = 0; i < map->get_row(); i++)
+    {
+        delete wave_map[i];
+    }
+    delete wave_map;
+}
+
+void wavefront::print_wavefront(int **wf)
 {
     for(int i = 0; i < map->get_row(); i++)
     {
         for(int j = 0; j < map->get_col(); j++)
         {
-            cout << wf.at(i).at(j) << " ";
+            cout << wf[i][j] << " ";
         }
         cout << endl;
     }
     cout <<"--------------------------"<< endl;
 }
 
-void wavefront::init_array(matrix_t matrix)
+int** wavefront::init_array()
 {
-    matrix.resize(map->get_row(),vector<int>(map->get_col(),0));
+    int** map_array = new int*[map->get_col()];
+    for(int i = 0; i < map->get_row(); i++)
+    {
+        map_array[i] = new int[map->get_col()];
+        for(int j = 0; j < map->get_col(); j++)
+        {
+            map_array[i][j] = 0;
+        }
+    }
+    return map_array;
 }
-
 
 wavefront::wavefront(sokoban_map *map)
 {
     this->map = map;
-    init_array(wavefront_map);
+    wavefront_map = init_array();
 }
 
 void wavefront::impose_state(state_s state)
 {
-    if(map->get_map().at(state.man.first).at(state.man.second) == 'G')
+    if(map->get_map()[state.man.first][state.man.second] == 'G')
     {
-        map->get_map().at(state.man.first).at(state.man.second) = 'm';
+        map->get_map()[state.man.first][state.man.second] = 'm';
     }
-    else if(map->get_map().at(state.man.first).at(state.man.second) == 'D' || map->get_map().at(state.man.first).at(state.man.second) == 'd')
+    else if(map->get_map()[state.man.first][state.man.second] == 'D' || map->get_map()[state.man.first][state.man.second] == 'd')
     {
-        map->get_map().at(state.man.first).at(state.man.second) = 'd';
+        map->get_map()[state.man.first][state.man.second] = 'd';
     }
     else
     {
-        map->get_map().at(state.man.first).at(state.man.second) = 'M';
+        map->get_map()[state.man.first][state.man.second] = 'M';
     }
     for(pair<int,int> diamond : state.diamonds)
     {
-        if(map->get_map().at(diamond.first).at(diamond.second) == 'G')
+        if(map->get_map()[diamond.first][diamond.second] == 'G')
         {
-            map->get_map().at(diamond.first).at(diamond.second) = 'j';
+            map->get_map()[diamond.first][diamond.second] = 'j';
         }
         else
         {
-            map->get_map().at(diamond.first).at(diamond.second) = 'J';
+            map->get_map()[diamond.first][diamond.second] = 'J';
         }
     }
 }
@@ -63,27 +80,26 @@ void wavefront::clear_state()
     {
         for(int j = 0; j < map->get_col(); j++)
         {
-            if(map->get_map().at(i).at(j) == 'J' || map->get_map().at(i).at(j) == 'M' )
+            if(map->get_map()[i][j] == 'J' || map->get_map()[i][j] == 'M' )
             {
-                map->get_map().at(i).at(j) = '.';
+                map->get_map()[i][j] = '.';
             }
-            else if(map->get_map().at(i).at(j) == 'j' || map->get_map().at(i).at(j) == 'm')
+            else if(map->get_map()[i][j] == 'j' || map->get_map()[i][j] == 'm')
             {
-                map->get_map().at(i).at(j) = 'G';
+                map->get_map()[i][j] = 'G';
             }
-            else if(map->get_map().at(i).at(j) == 'd')
+            else if(map->get_map()[i][j] == 'd')
             {
-                map->get_map().at(i).at(j) = 'D';
+                map->get_map()[i][j] = 'D';
             }
 
         }
     }
 }
 
-matrix_t wavefront::get_wavefront(state_s state, char initiator)
+int** wavefront::get_wavefront(state_s state, char initiator)
 {
-    matrix_t wf(map->get_row(),vector<int>(map->get_col(),0));
-    //init_array(wf);
+    int** wf = init_array();
     impose_state(state);
 
     queue<pair<int,int>> open;
@@ -92,19 +108,19 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator)
     {
         for(int j = 0; j < map->get_col(); j++)
         {
-            if(initiator == 'G' && map->get_map().at(i).at(j) == 'j')
+            if(initiator == 'G' && map->get_map()[i][j] == 'j')
             {
-                wf.at(i).at(j) = 1;
+                wf[i][j] = 1;
                 open.push(make_pair(i,j));
             }
-            if(map->get_map().at(i).at(j) == initiator)
+            if(map->get_map()[i][j] == initiator)
             {
-                wf.at(i).at(j) = 1;
+                wf[i][j] = 1;
                 open.push(make_pair(i,j));
             }
-            else if(map->get_map().at(i).at(j) == 'X')
+            else if(map->get_map()[i][j] == 'X')
             {
-                wf.at(i).at(j) = -1;
+                wf[i][j] = -1;
             }
         }
     }
@@ -118,31 +134,31 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator)
             switch(i)
             {
                 case 0:
-                    if(wf.at(wave.first-1).at(wave.second) == 0)
+                    if(wf[wave.first-1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first-1, wave.second));
-                        wf.at(wave.first-1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first-1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 1:
-                    if(wf.at(wave.first).at(wave.second+1) == 0)
+                    if(wf[wave.first][wave.second+1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second+1));
-                        wf.at(wave.first).at(wave.second+1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second+1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 2:
-                    if(wf.at(wave.first+1).at(wave.second) == 0)
+                    if(wf[wave.first+1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first+1, wave.second));
-                        wf.at(wave.first+1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first+1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 3:
-                    if(wf.at(wave.first).at(wave.second-1) == 0)
+                    if(wf[wave.first][wave.second-1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second-1));
-                        wf.at(wave.first).at(wave.second-1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second-1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 default:
@@ -153,33 +169,31 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator)
 
     clear_state();
     //print_wavefront(wf);
-
     return wf;
 }
 
-matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle)
+int** wavefront::get_wavefront(state_s state, char initiator, char obstacle)
 {
-    matrix_t wf(map->get_row(),vector<int>(map->get_col(),0));
+    int** wf = init_array();
     impose_state(state);
 
     char obstacle_other_type;
 
-
     queue<pair<int,int>> open;
 
     for(int i = 0; i < map->get_row(); i++)
     {
         for(int j = 0; j < map->get_col(); j++)
         {
-            if(map->get_map().at(i).at(j) == initiator)
+            if(map->get_map()[i][j] == initiator)
             {
-                wf.at(i).at(j) = 1;
+                wf[i][j] = 1;
                 open.push(make_pair(i,j));
             }
-            else if(map->get_map().at(i).at(j) == 'X' || map->get_map().at(i).at(j) == obstacle || map->get_map().at(i).at(j) == DIAMOND_ON_GOAL)
+            else if(map->get_map()[i][j] == 'X' || map->get_map()[i][j] == obstacle || map->get_map()[i][j] == DIAMOND_ON_GOAL)
             {
 
-                wf.at(i).at(j) = -1;
+                wf[i][j] = -1;
             }
         }
     }
@@ -193,31 +207,31 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle)
             switch(i)
             {
                 case 0:
-                    if(wf.at(wave.first-1).at(wave.second) == 0)
+                    if(wf[wave.first-1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first-1, wave.second));
-                        wf.at(wave.first-1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first-1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 1:
-                    if(wf.at(wave.first).at(wave.second+1) == 0)
+                    if(wf[wave.first][wave.second+1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second+1));
-                        wf.at(wave.first).at(wave.second+1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second+1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 2:
-                    if(wf.at(wave.first+1).at(wave.second) == 0)
+                    if(wf[wave.first+1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first+1, wave.second));
-                        wf.at(wave.first+1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first+1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 3:
-                    if(wf.at(wave.first).at(wave.second-1) == 0)
+                    if(wf[wave.first][wave.second-1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second-1));
-                        wf.at(wave.first).at(wave.second-1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second-1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 default:
@@ -231,9 +245,9 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle)
     return wf;
 }
 
-matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle, char obstacle_)
+int** wavefront::get_wavefront(state_s state, char initiator, char obstacle, char obstacle_)
 {
-    matrix_t wf(map->get_row(),vector<int>(map->get_col(),0));
+    int** wf = init_array();
     impose_state(state);
 
     queue<pair<int,int>> open;
@@ -242,18 +256,18 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle, 
     {
         for(int j = 0; j < map->get_col(); j++)
         {
-            if(map->get_map().at(i).at(j) == initiator)
+            if(map->get_map()[i][j] == initiator)
             {
-                wf.at(i).at(j) = 1;
+                wf[i][j] = 1;
                 open.push(make_pair(i,j));
             }
-            else if(map->get_map().at(i).at(j) == 'X' ||
-                    map->get_map().at(i).at(j) == obstacle ||
-                    map->get_map().at(i).at(j) == obstacle_ ||
-                    map->get_map().at(i).at(j) == DIAMOND_ON_GOAL)
+            else if(map->get_map()[i][j] == 'X' ||
+                    map->get_map()[i][j] == obstacle ||
+                    map->get_map()[i][j] == obstacle_ ||
+                    map->get_map()[i][j] == DIAMOND_ON_GOAL)
             {
 
-                wf.at(i).at(j) = -1;
+                wf[i][j] = -1;
             }
         }
     }
@@ -267,31 +281,31 @@ matrix_t wavefront::get_wavefront(state_s state, char initiator, char obstacle, 
             switch(i)
             {
                 case 0:
-                    if(wf.at(wave.first-1).at(wave.second) == 0)
+                    if(wf[wave.first-1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first-1, wave.second));
-                        wf.at(wave.first-1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first-1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 1:
-                    if(wf.at(wave.first).at(wave.second+1) == 0)
+                    if(wf[wave.first][wave.second+1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second+1));
-                        wf.at(wave.first).at(wave.second+1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second+1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 2:
-                    if(wf.at(wave.first+1).at(wave.second) == 0)
+                    if(wf[wave.first+1][wave.second] == 0)
                     {
                         open.push(make_pair(wave.first+1, wave.second));
-                        wf.at(wave.first+1).at(wave.second) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first+1][wave.second] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 case 3:
-                    if(wf.at(wave.first).at(wave.second-1) == 0)
+                    if(wf[wave.first][wave.second-1] == 0)
                     {
                         open.push(make_pair(wave.first, wave.second-1));
-                        wf.at(wave.first).at(wave.second-1) = wf.at(wave.first).at(wave.second) + 1;
+                        wf[wave.first][wave.second-1] = wf[wave.first][wave.second] + 1;
                     }
                     break;
                 default:

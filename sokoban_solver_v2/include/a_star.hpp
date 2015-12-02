@@ -24,11 +24,11 @@ public:
     std::string solve();
 private:
     static bool compare_heuristic(state_s A, state_s B);
-    bool validate_push_direction(diamond_t diamond, position_t position, matrix_t wavefront_obstacle);
+    bool validate_push_direction(diamond_t diamond, position_t position, int** wavefront_obstacle);
     std::string stringify(state_s state);
     int get_heuristic(state_s &child);
     int get_move_cost(state_s &child, state_s &parent);
-    position_t get_push_direction(diamond_t diamond, matrix_t wavefront_obstacle);
+    position_t get_push_direction(diamond_t diamond, int** wavefront_obstacle);
     void get_children(state_s parent, std::vector<state_s> &children);
     void print_solution(state_s *final_state);
 

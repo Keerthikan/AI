@@ -7,9 +7,7 @@ using namespace std;
 
 int main()
 {
-
-    sokoban_map map("/home/student/AI/sokoban_solver_v2/maps/competition.txt");
-
+    sokoban_map map("/home/thomas/Documents/Git/AI/sokoban_solver_v2/maps/heuristictest.txt");
     map.deadlock_detection();
     map.print();
 
@@ -17,6 +15,7 @@ int main()
     state_s final = map.get_final_state();
 
     wavefront wf(&map);
+
     wf.get_wavefront(init, 'G');
 
     a_star solver(init,final,wf,map);

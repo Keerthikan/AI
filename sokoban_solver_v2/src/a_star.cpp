@@ -30,22 +30,24 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
 {
 
     int diamond_num = 0;
-    matrix_t wavefront_obstacle;
+    int **wavefront_obstacle;
+    char** map;
 
     for(diamond_t diamond : parent.diamonds)
     {
 
 
         for(int i = 0; i < 4; i++)
-        {
+        {            
             position_t push_direction;
             state_s child = parent;
             child.heuristic = 0;
-            if(sokoban.get_map(child).at(child.man.first).at(child.man.second) == 'd')
+            map = sokoban.get_map(child);
+            if(map[child.man.first][child.man.second] == 'd')
             {
                 wavefront_obstacle = wavefront_ptr.get_wavefront(child, MAN_ON_DEADLOCK, DIAMOND);
             }
-            else if(sokoban.get_map(child).at(child.man.first).at(child.man.second) == 'm')
+            else if(map[child.man.first][child.man.second] == 'm')
             {
                 wavefront_obstacle = wavefront_ptr.get_wavefront(child, MAN_ON_GOAL, DIAMOND);
             }
@@ -58,7 +60,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
             {
                 case 0:
                     push_direction = make_pair(diamond.first-1,diamond.second);
-                    if(wavefront_obstacle.at(diamond.first-1).at(diamond.second) > 0)
+                    if(wavefront_obstacle[diamond.first-1][diamond.second] > 0)
                     {
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
@@ -73,7 +75,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     break;
                 case 1:
                     push_direction = make_pair(diamond.first,diamond.second+1);
-                    if(wavefront_obstacle.at(diamond.first).at(diamond.second+1) > 0)
+                    if(wavefront_obstacle[diamond.first][diamond.second+1] > 0)
                     {
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
@@ -88,7 +90,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     break;
                 case 2:
                     push_direction = make_pair(diamond.first+1,diamond.second);
-                    if(wavefront_obstacle.at(diamond.first+1).at(diamond.second) > 0)
+                    if(wavefront_obstacle[diamond.first+1][diamond.second] > 0)
                     {
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
@@ -103,7 +105,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                     break;
                 case 3:
                     push_direction = make_pair(diamond.first,diamond.second-1);
-                    if(wavefront_obstacle.at(diamond.first).at(diamond.second-1) > 0)
+                    if(wavefront_obstacle[diamond.first][diamond.second-1] > 0)
                     {
                         if(validate_push_direction(diamond, push_direction, wavefront_obstacle))
                         {
@@ -119,6 +121,8 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
                 default:
                     break;
             }
+            sokoban.delete_map(map);
+            wavefront_ptr.delete_wavefront(wavefront_obstacle);
         }
         diamond_num++;
     }
@@ -152,22 +156,22 @@ string a_star::solve()
         current = open.top();
         open.pop();
         closed.emplace(stringify(current), current);
-        cout << "cout: " << count<<endl;
+
         get_children(current, children);
 
-        cout << "Current state info:" << endl;
-        sokoban.print(current);
-        cout << "Cost: " << current.cost << endl;
-        cout << "Rank: " << current.heuristic << endl;
-        cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
-        /*
-        if(current.man.first == 3 && current.man.second == 4  &&
+//        cout << "Current state info:" << endl;
+//        sokoban.print(current);
+//        cout << "Cost: " << current.cost << endl;
+//        cout << "Rank: " << current.heuristic << endl;
+//        cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
+
+        /*if(current.man.first == 2 && current.man.second == 7  &&
                         current.diamonds.at(0).first == 3 &&
                         current.diamonds.at(0).second == 2  &&
                         current.diamonds.at(1).first == 2 &&
                         current.diamonds.at(1).second == 3 &&
                         current.diamonds.at(2).first == 3 &&
-                        current.diamonds.at(2).second == 3 &&
+                        current.diamonds.at(2).second == 4 &&
                         current.diamonds.at(3).first == 2 &&
                         current.diamonds.at(3).second == 8)
             {
@@ -187,8 +191,8 @@ string a_star::solve()
             }
             cout << "-----------------------------" << endl;
             break;
-        }
-        */
+        }*/
+
         for(state_s child : children)
         {
 
@@ -219,18 +223,17 @@ string a_star::solve()
                 child.heuristic = child.cost + get_heuristic(child);
                 child.parent = &current;
                 open.push(child);
-                cout << endl;
-                cout << "inserted" << endl;
+
             }
 
-            sokoban.print(child);
-            cout << endl;
-            cout << "get_heuristic() = " << get_heuristic(child) << endl;
-            cout << "Cost: " << child.cost << endl;
-            cout << "Rank: " << child.heuristic << endl;
-            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
+//            sokoban.print(child);
+//            cout << endl;
+//            cout << "get_heuristic() = " << get_heuristic(child) << endl;
+//            cout << "Cost: " << child.cost << endl;
+//            cout << "Rank: " << child.heuristic << endl;
+//            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
         }
-      cout << "------------------------------------" << endl;
+//      cout << "------------------------------------" << endl;
         children.clear();
     }
     cout << count << endl;
@@ -239,13 +242,14 @@ string a_star::solve()
     cout << endl;
     cout << "i was solved using this state: " << endl;
     sokoban.print(open.top());
+    state_s final_state = open.top();
     cout << "final state: " << endl;
     sokoban.print_final(final);
-    //(print_solution(&final_state);
+    print_solution(&final_state);
     return "jubii jeg er løst";
 }
 
-bool a_star::validate_push_direction(diamond_t diamond, position_t push_direction, matrix_t wavefront_obstacle)
+bool a_star::validate_push_direction(diamond_t diamond, position_t push_direction, int** wavefront_obstacle)
 {
     bool result;
     int direction_row = diamond.first - push_direction.first;
@@ -255,11 +259,10 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
     {
        // cout << "row: "<< (direction_row)  << endl;
        // cout <<"row: "<< diamond.first + direction_row << "," << diamond.second << " : " << sokoban.get_map()[diamond.first + direction_row][diamond.second] << endl;
-        if(wavefront_obstacle.at(diamond.first+1).at(diamond.second) == -1 ||
-                wavefront_obstacle.at(diamond.first-1).at(diamond.second) == -1 ||
-                sokoban.get_map().at(diamond.first + direction_row).at(diamond.second) == DEADLOCK)
+        if(wavefront_obstacle[diamond.first+1][diamond.second] == -1 ||
+                wavefront_obstacle[diamond.first-1][diamond.second] == -1 ||
+                sokoban.get_map()[diamond.first + direction_row][diamond.second] == DEADLOCK)
         {
-            cout << sokoban.get_map().at(diamond.first + direction_row).at(diamond.second)  << endl; 
             result = false;
         }
         else
@@ -275,11 +278,11 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
       //  cout << "first: "<< wavefront_obstacle[diamond.first][diamond.second+1]  << endl;
       //  cout << "second: "<< wavefront_obstacle[diamond.first][diamond.second-1]  << endl;
 
-        if(wavefront_obstacle.at(diamond.first).at(diamond.second+1) == -1 ||
-            wavefront_obstacle.at(diamond.first).at(diamond.second-1) == -1 ||
-            sokoban.get_map().at(diamond.first).at(diamond.second + direction_col) == DEADLOCK)
+        if(wavefront_obstacle[diamond.first][diamond.second+1] == -1 ||
+            wavefront_obstacle[diamond.first][diamond.second-1] == -1 ||
+            sokoban.get_map()[diamond.first][diamond.second + direction_col] == DEADLOCK)
         {
-            cout << sokoban.get_map().at(diamond.first).at(diamond.second + direction_col) << endl;
+
             result = false;
            // cout << "false" << endl;
         }
@@ -294,24 +297,32 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
 
 int a_star::get_heuristic(state_s &child)
 {
+    int** wf;
     int diamond_to_goal_cost, heuristic = 0;
 
     for(diamond_t diamond : child.diamonds)
     {
-        diamond_to_goal_cost = wavefront_ptr.get_wavefront(child,GOAL).at(diamond.first).at(diamond.second);
+        wf = wavefront_ptr.get_wavefront(child,GOAL);
+        diamond_to_goal_cost = wf[diamond.first][diamond.second];
         heuristic += diamond_to_goal_cost;
+        wavefront_ptr.delete_wavefront(wf);
     }
     return heuristic;
 }
 
 int a_star::get_move_cost(state_s &child, state_s &parent)
 {
+    int** wf;
+    int move_cost;
     for(int i = 0; i < child.diamonds.size(); i++)
     {
         if(child.diamonds.at(i) != parent.diamonds.at(i))
         {
-            return wavefront_ptr.get_wavefront(parent,MAN,DIAMOND).at(parent.diamonds.at(i).first + (parent.diamonds.at(i).first-child.diamonds.at(i).first))
-                                                           .at(parent.diamonds.at(i).second + (parent.diamonds.at(i).second-child.diamonds.at(i).second));
+            wf = wavefront_ptr.get_wavefront(parent,MAN,DIAMOND);
+            move_cost = wf[parent.diamonds.at(i).first + (parent.diamonds.at(i).first-child.diamonds.at(i).first)]
+                                                           [parent.diamonds.at(i).second + (parent.diamonds.at(i).second-child.diamonds.at(i).second)];
+            wavefront_ptr.delete_wavefront(wf);
+            return move_cost;
         }
     }
     return 0;

@@ -4,34 +4,47 @@
 
 using namespace std;
 
-map_t sokoban_map::get_map(state_s state)
+void sokoban_map::delete_map(char** state_map)
 {
-    map_t return_map;
-
-    return_map = map;
-
-    if(return_map.at(state.man.first).at(state.man.second) == '.')
+    for(int i = 0; i < get_row(); i++)
     {
-        return_map.at(state.man.first).at(state.man.second) = 'M';
+        delete state_map[i];
     }
-    else if(return_map.at(state.man.first).at(state.man.second) == 'G')
-    {
-        return_map.at(state.man.first).at(state.man.second) = 'm';
+    delete state_map;
+}
+
+char** sokoban_map::get_map(state_s state)
+{
+    char** return_map;
+    return_map = new char*[row];
+
+    for (int i = 0; i < row; i++) {
+        return_map[i] = new char[col];
+        for (int j = 0; j < col; j++) {
+            return_map[i][j] = map[i][j];
+        }
     }
-    else if(return_map.at(state.man.first).at(state.man.second) == 'D')
+    if(return_map[state.man.first][state.man.second] == '.')
     {
-        return_map.at(state.man.first).at(state.man.second) = 'd';
+        return_map[state.man.first][state.man.second] = 'M';
+    }
+    else if(return_map[state.man.first][state.man.second] == 'G')
+    {
+        return_map[state.man.first][state.man.second] = 'm';
+    }
+    else if(return_map[state.man.first][state.man.second] == 'D')
+    {
+        return_map[state.man.first][state.man.second] = 'd';
     }
     for(diamond_t diamond : state.diamonds)
     {
-        //cout << diamond.first << diamond.second << endl;
-        if(return_map.at(diamond.first).at(diamond.second) == '.')
+        if(return_map[diamond.first][diamond.second] == '.')
         {
-            return_map.at(diamond.first).at(diamond.second) = 'J';
+            return_map[diamond.first][diamond.second] = 'J';
         }
-        else if(return_map.at(diamond.first).at(diamond.second) == 'G')
+        else if(return_map[diamond.first][diamond.second] == 'G')
         {
-            return_map.at(diamond.first).at(diamond.second) = 'j';
+            return_map[diamond.first][diamond.second] = 'j';
         }
     }
     return return_map;
@@ -66,24 +79,24 @@ void sokoban_map::deadlock_detection()
         int corner = 0;
         for(int j = 1 ; j < get_col() ;  j++)
         {
-            if(map.at(i).at(j) == '.')
+            if(map[i][j] == '.')
             {
-                if(map.at(i-1).at(j) == 'X' &&  map.at(i).at(j-1) == 'X'  && map.at(i-1).at(j-1) == 'X' )
+                if(map[i-1][j] == 'X' &&  map[i][j-1] == 'X'  && map[i-1][j-1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map.at(i+1).at(j) == 'X' &&  map.at(i).at(j-1) == 'X'&& map.at(i+1).at(j-1) == 'X' )
+                if(map[i+1][j] == 'X' &&  map[i][j-1] == 'X'&& map[i+1][j-1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map.at(i+1).at(j) == 'X' &&  map.at(i).at(j+1) == 'X' && map.at(i+1).at(j+1) == 'X' )
+                if(map[i+1][j] == 'X' &&  map[i][j+1] == 'X' && map[i+1][j+1] == 'X' )
                 {
                     corner++;
                 }
 
-                if(map.at(i-1).at(j) == 'X' &&  map.at(i).at(j+1) == 'X' && map.at(i-1).at(j+1) == 'X' )
+                if(map[i-1][j] == 'X' &&  map[i][j+1] == 'X' && map[i-1][j+1] == 'X' )
                 {
                     corner++;
                 }
@@ -92,13 +105,13 @@ void sokoban_map::deadlock_detection()
                 {
                     corners.push_back(make_pair(i,j));
                     cout << "i: "<< i << " j: " << j << endl;
-                    if(map.at(i).at(j) == 'M')
+                    if(map[i][j] == 'M')
                     {
-                        map.at(i).at(j) = 'm';
+                        map[i][j] = 'm';
                     }
                     else
                     {
-                        map.at(i).at(j) = 'D';
+                        map[i][j] = 'D';
                     }
                     corner = 0;
 
@@ -133,7 +146,7 @@ void sokoban_map::deadlock_detection()
             while(first_corner != second_corner)
             {
                 first_corner.second++;
-                if(map.at(first_corner.first).at(first_corner.second) == 'J' || map.at(first_corner.first).at(first_corner.second) == 'G'  )
+                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
                 {
                     deadlock_row = false;
                 }
@@ -146,17 +159,17 @@ void sokoban_map::deadlock_detection()
             {
                 while(first_corner != second_corner)
                 {
-                    if(map.at(first_corner.first).at(first_corner.second) == 'M')
+                    if(map[first_corner.first][first_corner.second] == 'M')
                     {
-                        map.at(first_corner.first).at(first_corner.second)  = 'd';
+                        map[first_corner.first][first_corner.second]  = 'd';
                     }
-                    else if(map.at(first_corner.first).at(first_corner.second) == 'X')
+                    else if(map[first_corner.first][first_corner.second] == 'X')
                     {
-                        map.at(first_corner.first).at(first_corner.second)  = 'X';
+                        map[first_corner.first][first_corner.second]  = 'X';
                     }
                     else
                     {
-                        map.at(first_corner.first).at(first_corner.second) = 'D';
+                        map[first_corner.first][first_corner.second] = 'D';
                     }
                     cout << "deadlocked row: " << first_corner.first << "," <<first_corner.second << endl;
                     first_corner.second++;
@@ -191,7 +204,7 @@ void sokoban_map::deadlock_detection()
             {
                 first_corner.first++;
 
-                if(map.at(first_corner.first).at(first_corner.second) == 'J' || map.at(first_corner.first).at(first_corner.second) == 'G'  )
+                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
                 {
                     deadlock_col = false;
                 }
@@ -204,17 +217,17 @@ void sokoban_map::deadlock_detection()
             {
                 while(first_corner != second_corner)
                 {
-                    if(map.at(first_corner.first).at(first_corner.second) == 'M')
+                    if(map[first_corner.first][first_corner.second] == 'M')
                     {
-                        map.at(first_corner.first).at(first_corner.second)  = 'd';
+                        map[first_corner.first][first_corner.second]  = 'd';
                     }
-                    else if(map.at(first_corner.first).at(first_corner.second) == 'X')
+                    else if(map[first_corner.first][first_corner.second] == 'X')
                     {
-                        map.at(first_corner.first).at(first_corner.second)  = 'X';
+                        map[first_corner.first][first_corner.second]  = 'X';
                     }
                     else
                     {
-                        map.at(first_corner.first).at(first_corner.second) = 'D';
+                        map[first_corner.first][first_corner.second] = 'D';
                     }
                     cout << "deadlocked col: " << first_corner.first << "," <<first_corner.second<< endl;
                     first_corner.first++;
@@ -272,11 +285,11 @@ state_s sokoban_map::get_init_state()
     {
         for(int j = 0; j < col; j++)
         {
-            if(map.at(i).at(j) == 'M' ||  map.at(i).at(j) == 'd')
+            if(map[i][j] == 'M' ||  map[i][j] == 'd')
             {
                 state.man = make_pair(i,j);
             }
-            else if(map.at(i).at(j) == 'J')
+            else if(map[i][j] == 'J')
             {
                 state.diamonds.push_back(make_pair(i,j));
             }
@@ -294,17 +307,17 @@ void sokoban_map::clear_map()
     {
         for(int j = 0; j < col; j++)
         {
-            if(map.at(i).at(j) == 'M' || map.at(i).at(j) == 'J' )
+            if(map[i][j] == 'M' || map[i][j] == 'J' )
             {
-                map.at(i).at(j) = '.';
+                map[i][j] = '.';
             }
-            else if(map.at(i).at(j) == 'j' || map.at(i).at(j) == 'm' )
+            else if(map[i][j] == 'j' || map[i][j] == 'm' )
             {
-                map.at(i).at(j) = 'G';
+                map[i][j] = 'G';
             }
-            else if(map.at(i).at(j) == 'd' )
+            else if(map[i][j] == 'd' )
             {
-                map.at(i).at(j) = 'D';
+                map[i][j] = 'D';
             }
         }
     }
@@ -318,7 +331,7 @@ void sokoban_map::print()
     {
         for(int j = 0; j < col; j++)
         {
-            cout << map.at(i).at(j) << " ";
+            cout << map[i][j] << " ";
         }
         cout << endl;
     }
@@ -332,13 +345,13 @@ void sokoban_map::print_final(state_s final)
 
     for(int i = 0; i < final.diamonds.size(); i++)
     {
-        if(map.at(final.diamonds.at(i).first).at(final.diamonds.at(i).second) == 'G')
+        if(map[final.diamonds.at(i).first][final.diamonds.at(i).second] == 'G')
         {
-            map.at(final.diamonds.at(i).first).at(final.diamonds.at(i).second) = 'j';
+            map[final.diamonds.at(i).first][final.diamonds.at(i).second] = 'j';
         }
         else
         {
-            map.at(final.diamonds.at(i).first).at(final.diamonds.at(i).second) = 'J';
+            map[final.diamonds.at(i).first][final.diamonds.at(i).second] = 'J';
         }
     }
     cout << endl;
@@ -347,7 +360,7 @@ void sokoban_map::print_final(state_s final)
     {
         for(int j = 0; j < col; j++)
         {
-            cout << map.at(i).at(j) << " ";
+            cout << map[i][j] << " ";
         }
         cout << endl;
     }
@@ -359,29 +372,29 @@ void sokoban_map::print(state_s state)
 {
     //count++;
     //cout << count << endl;
-    if(map.at(state.man.first).at(state.man.second) == 'G')
+    if(map[state.man.first][state.man.second] == 'G')
     {
-        map.at(state.man.first).at(state.man.second) ='m';
+        map[state.man.first][state.man.second] ='m';
     }
-    else if(map.at(state.man.first).at(state.man.second) == 'D')
+    else if(map[state.man.first][state.man.second] == 'D')
     {
-        map.at(state.man.first).at(state.man.second) ='d';
+        map[state.man.first][state.man.second] ='d';
     }
     else
     {
-        map.at(state.man.first).at(state.man.second) ='M';
+        map[state.man.first][state.man.second] ='M';
     }
 
 
     for(int i = 0; i < state.diamonds.size(); i++)
     {
-        if(map.at(state.diamonds.at(i).first).at(state.diamonds.at(i).second) == 'G')
+        if(map[state.diamonds.at(i).first][state.diamonds.at(i).second] == 'G')
         {
-            map.at(state.diamonds.at(i).first).at(state.diamonds.at(i).second) = 'j';
+            map[state.diamonds.at(i).first][state.diamonds.at(i).second] = 'j';
         }
         else
         {
-            map.at(state.diamonds.at(i).first).at(state.diamonds.at(i).second) = 'J';
+            map[state.diamonds.at(i).first][state.diamonds.at(i).second] = 'J';
         }
     }
     cout << endl;
@@ -390,7 +403,7 @@ void sokoban_map::print(state_s state)
     {
         for(int j = 0; j < col; j++)
         {
-            cout << map.at(i).at(j) << " ";
+            cout << map[i][j] << " ";
         }
         cout << endl;
     }
@@ -407,9 +420,7 @@ sokoban_map::sokoban_map(string file)
     myReadFile >> row;
     myReadFile >> diamonds;
     cout << col << row << diamonds << endl;
-
-    map.resize(row,vector<char>(col,' '));
-    /*map = new char*[row];
+    map = new char*[row];
 
     for (int i = 0; i < row; i++) {
         map[i] = new char[col];
@@ -417,7 +428,6 @@ sokoban_map::sokoban_map(string file)
             map[i][j] = ' ';
         }
     }
-    */
 
     //GotoLine(myReadFile, 1);
     string str;
@@ -433,7 +443,7 @@ sokoban_map::sokoban_map(string file)
         {
             //cout << "lenght of string: " << str.length() << " at: " << rows << endl;
 
-            map.at(rows).at(column) = str.at(column);
+            map[rows][column] = str.at(column);
 
             column++;
         }
