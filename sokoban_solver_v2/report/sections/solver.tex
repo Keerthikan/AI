@@ -1,0 +1,82 @@
+\section{Sokoban Solver}
+This part of the report will, as suggested by the title, present the sokoban solver.
+Initially, a brief overview of the various iterations of the method used to solve the problem will be presented, after which the final solution is shown in more detail.
+During the process a few optimizations were done to reduce the computational workload of the solver.
+
+\subsection{The Sokoban Map}
+A sokoban map consists of walls, goals, diamonds and the man. 
+Each of these are represented using simple symbols and characters.
+The man is represented by 'M' or 'm' when standing on a goal. 
+A diamond is represented by 'J' or 'j' when standing on a goal.
+A goal is represented by 'G' and a wall by 'X'.
+When necessary, deadlock situations will be represented by a red square while non-deadlocks will have a green square.
+
+\subsection{The Algorithm and A*}
+A*, being a well-established algorithm for pathfinding problems is an obvious candidate for creating the solver.
+The solver was developed mostly using \cite{stanford} as reference.
+A* is a greedy algorithm that, when given an appropriate, underestimating heuristic, is guaranteed to find the shortest path in terms of whatever cost described by the heuristic.
+In order to use the algorithm, it is necessary to define the terms used by the algorithm:
+
+\paragraph{State:}
+First, it is necessary to define what constitutes a state. 
+Any state should be uniquely distinguishable from any other state and should hold the information necessary to describe the goal condition.
+In the case of the sokoban solver, the position of the diamonds and the man on the map and the map itself describes a state.
+However, it is unnecessary to include the map in the state representation as this is static.
+Theoretically, one could leave out the position of the man as well as this is irrelevant when describing the goal condition.
+It was chosen to include the position of the man in the state for ease of access in various parts of the implementation.
+
+\paragraph{Initial State:}
+\label{sec:initialstate}
+This is the starting point of the algorithm. 
+In the case of the competition map, see figure \ref{fig:competition}, the state is defined as follows:
+
+\begin{lstlisting}
+	Man: {1,6}
+	Diamonds: {3,2;3,3;3,4;4,3}
+\end{lstlisting}
+
+\paragraph{Goal State:}
+This is the state such that, when reached, the problem is solved. 
+Upon each iteration of the algorithm each new state is compared to this one in order to decide whether another iteration should be done.
+It is worth noting that the position of the man is disregarded when comparing with the goal state as the man has no impact on the win condition of the game.
+Additionally, the order of the diamonds is irrelevant.
+For the competition map the goal state is defined as:
+
+\begin{lstlisting}
+	Man: {0,0}
+	Diamonds: {1,8;2,7;2,8;3,8}
+\end{lstlisting}
+
+\paragraph{Heuristic:}
+The heuristic is the measure by which the algorithm determines which state to treat next.
+It should provide a measure of the approximated distance to the goal condition. 
+This is done by applying the wavefront algorithm to the map with goals as the initial nodes.
+The resulting wavefront map can be seen in figure \ref{fig:competitionwavefront}.
+The heuristic is then just $\sum_{i}$wf(Diamonds[i]) where i goes from zero to the number of diamonds.
+Using this method means that the heuristic will reflect the distance from each diamond to the goal closest to the diamond. 
+This ensures that the heuristic is underestimated, as is required to guarantee the "shortest path" property of A*.
+Initially it was considered to add a penalty to switching diamonds, thereby encouraging the algorithm to finish work on one diamond before starting the next.
+This approach was thought to result in a more, subjectively, "natural" looking solution of the map.
+It was eventually abandoned due to unnecessity and a desire for simplifying the code base.
+
+\paragraph{Cost:}
+This is the exact cost of going from the initial state to some state $S_i$. 
+In this case this cost is defined simply as the number of steps the man must take in order to reach $S_i$.\\~\\
+
+The parts described above are connected in the \texttt{solve()} function. 
+This function holds the implementation of the A*.
+It holds the two sets, \texttt{open} and \texttt{closed}.
+\texttt{open} should always be sorted such that the state with the lowest heuristic is the first element.
+This makes the \texttt{priority\_queue} a good candidate as the PQ allows for simple sorting of the set.
+\texttt{closed} should be searched for every new state to ensure that they have not been attempted previously, before being pushed onto \texttt{open}.
+In order to easily search for a state \texttt{map} is used. 
+A string is used for hashing. It contains the diamond and man positions and is generated from a state. 
+The initial state mentioned previously would produce \texttt{3233344316}.\\
+The implementation used does allow for some optimization;
+Since the order of the diamonds does not uniquely identify one state, by changing the hashing function such that it compares every diamond position in a state, with every position in the string, the number of states pushed onto \texttt{open} could potentially be reduced.\\
+When a state is taken from \texttt{open} all of its potential children are found using \texttt{get\_children()}. 
+This function utilizes the wavefront algorithm as well.
+By applying a wavefront with the diamonds set as walls and the man as the initiator, every reachable position will have a value $>1$.
+Every side of each diamond is then checked, first to see if the man can reach that side, then to see if the opposite side of the diamond is a valid new position for the diamond.
+If both return true that state is created and saved.
+
