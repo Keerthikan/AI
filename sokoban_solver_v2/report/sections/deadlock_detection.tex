@@ -52,13 +52,24 @@ When all the corners of the map is found, are these corners used to check whethe
  
  Applying this scheme onto the map shows a great improvement of the solving speed,but also on the memory usage of the solver,  which the tests also shows. The low memory usage occurs as the amount of children declines, and thereby have a lower memory usage, and the search time declines as there is fewer children to search through. \\
 
-\begin{figure}[H]
-\centering
-\includegraphics[width = \textwidth]{images/deadlockImprovement}
-\caption{Improvement using deadlock detection}
-\end{figure} 
- % Make test showing the memory usage with and without the solver 
  
+ \begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.98\linewidth]{images/deadlockImprovement}
+  \caption{Time improvement}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.99\linewidth]{images/Memory_usage_1}
+  \caption{Memory usage improvement}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{A figure with two subfigures}
+\label{fig:test}
+\end{figure}
  
 An online version of an deadlock detection were also considered.  An online version could be capable while the system was solving the game, detect whether a child contained a deadlock state, and thereby remove it from the search.  This form of deadlocks could occur when a state has diamond located next to each other as such, such that each of them block each one. \\
 
