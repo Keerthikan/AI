@@ -86,20 +86,25 @@ void sokoban_map::deadlock_detection()
                     corner++;
                 }
 
+
+
                 if(map[i+1][j] == 'X' &&  map[i][j-1] == 'X'&& map[i+1][j-1] == 'X' )
                 {
                     corner++;
                 }
+
 
                 if(map[i+1][j] == 'X' &&  map[i][j+1] == 'X' && map[i+1][j+1] == 'X' )
                 {
                     corner++;
                 }
 
+
                 if(map[i-1][j] == 'X' &&  map[i][j+1] == 'X' && map[i-1][j+1] == 'X' )
                 {
                     corner++;
                 }
+
 
                 if(corner == 1 )
                 {
@@ -146,7 +151,7 @@ void sokoban_map::deadlock_detection()
             while(first_corner != second_corner)
             {
                 first_corner.second++;
-                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
+                if((map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G') && (map[first_corner.first+1][first_corner.second] != 'X' || map[first_corner.first-1][first_corner.second] != 'X')   )
                 {
                     deadlock_row = false;
                 }
@@ -204,7 +209,7 @@ void sokoban_map::deadlock_detection()
             {
                 first_corner.first++;
 
-                if(map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G'  )
+                if((map[first_corner.first][first_corner.second] == 'J' || map[first_corner.first][first_corner.second] == 'G') && (map[first_corner.first][first_corner.second+1] != 'X' || map[first_corner.first][first_corner.second-1] != 'X')  )
                 {
                     deadlock_col = false;
                 }
