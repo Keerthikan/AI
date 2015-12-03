@@ -1,0 +1,778 @@
+desc: (none)
+cmd: ./sokoban_solver
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=6334707
+mem_heap_B=6458
+mem_heap_extra_B=2030
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=16172957
+mem_heap_B=26173
+mem_heap_extra_B=6755
+mem_stacks_B=0
+heap_tree=detailed
+n5: 26173 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 19200 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 18432 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 18432 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 768 0x40A2A5: a_star::get_children(state_s, std::vector<state_s, std::allocator<state_s> >&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 768 0x40AD3D: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 768 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 0 in 1 place, below massif's threshold (01.00%)
+ n1: 2728 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 2728 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 2728 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 2094 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 1486 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 1486 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 1486 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 504 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 504 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 104 in 30 places, all below massif's threshold (01.00%)
+ n0: 1128 in 18 places, all below massif's threshold (01.00%)
+ n2: 1023 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 1023 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 1023 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 1023 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 1023 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 1023 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 1023 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 3 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=3
+#-----------
+time=24648092
+mem_heap_B=22304
+mem_heap_extra_B=7384
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=37255497
+mem_heap_B=37782
+mem_heap_extra_B=10706
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=45083423
+mem_heap_B=40275
+mem_heap_extra_B=12861
+mem_stacks_B=0
+heap_tree=detailed
+n6: 40275 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 25344 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 24576 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 24576 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 768 0x40A2A5: a_star::get_children(state_s, std::vector<state_s, std::allocator<state_s> >&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 768 0x40AD3D: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 768 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 0 in 1 place, below massif's threshold (01.00%)
+ n1: 7216 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 7216 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 7216 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 3392 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 2048 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 2048 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 2048 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 1256 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 1256 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 88 in 30 places, all below massif's threshold (01.00%)
+ n2: 2787 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 2735 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 2735 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 2735 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 2735 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 2706 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 2706 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 29 in 3 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 52 in 2 places, all below massif's threshold (01.00%)
+ n0: 880 in 17 places, all below massif's threshold (01.00%)
+ n1: 656 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 656 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 656 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+#-----------
+snapshot=6
+#-----------
+time=55213587
+mem_heap_B=43566
+mem_heap_extra_B=15522
+mem_stacks_B=0
+heap_tree=detailed
+n6: 43566 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 25344 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 24576 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 24576 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 768 0x40A2A5: a_star::get_children(state_s, std::vector<state_s, std::allocator<state_s> >&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 768 0x40AD3D: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 768 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 0 in 1 place, below massif's threshold (01.00%)
+ n1: 9064 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 9064 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 9064 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 4000 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 2048 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 2048 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 2048 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 1880 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 1880 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 72 in 30 places, all below massif's threshold (01.00%)
+ n2: 3454 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 3428 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 3428 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 3428 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 3428 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 3399 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 3399 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 29 in 3 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 26 in 2 places, all below massif's threshold (01.00%)
+ n0: 880 in 17 places, all below massif's threshold (01.00%)
+ n1: 824 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 824 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 824 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+#-----------
+snapshot=7
+#-----------
+time=62363070
+mem_heap_B=70722
+mem_heap_extra_B=17366
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=73766086
+mem_heap_B=73033
+mem_heap_extra_B=19711
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=81786295
+mem_heap_B=75399
+mem_heap_extra_B=21889
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=94267745
+mem_heap_B=78488
+mem_heap_extra_B=24968
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=99607974
+mem_heap_B=79688
+mem_heap_extra_B=26256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=111184776
+mem_heap_B=83044
+mem_heap_extra_B=29260
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=119926032
+mem_heap_B=191097
+mem_heap_extra_B=46279
+mem_stacks_B=0
+heap_tree=detailed
+n5: 191097 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 148224 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 147456 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 147456 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 17864 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 17864 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 17864 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 15806 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 11630 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 11630 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 11630 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 4088 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 4088 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 88 in 31 places, all below massif's threshold (01.00%)
+ n2: 6699 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 6699 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 6699 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 6699 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 6699 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 6699 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 6699 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n0: 2504 in 18 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=14
+#-----------
+time=131022553
+mem_heap_B=138108
+mem_heap_extra_B=33900
+mem_stacks_B=0
+heap_tree=detailed
+n6: 138108 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 99072 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 98304 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 98304 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 19536 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 19536 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 19536 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n2: 8968 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 8192 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 8192 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 8192 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 776 in 32 places, all below massif's threshold (01.00%)
+ n2: 7326 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 7326 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 7326 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 7326 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 7326 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 7326 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 7326 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n1: 1776 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 1776 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 1776 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n0: 1430 in 17 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=15
+#-----------
+time=137689385
+mem_heap_B=139425
+mem_heap_extra_B=35495
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=149893401
+mem_heap_B=142970
+mem_heap_extra_B=38686
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=157670427
+mem_heap_B=144761
+mem_heap_extra_B=40463
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=166585521
+mem_heap_B=147506
+mem_heap_extra_B=42790
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=180832327
+mem_heap_B=150948
+mem_heap_extra_B=45932
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=189742194
+mem_heap_B=153655
+mem_heap_extra_B=48233
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=203995247
+mem_heap_B=157642
+mem_heap_extra_B=51654
+mem_stacks_B=0
+heap_tree=detailed
+n6: 157642 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 99072 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 98304 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 98304 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 29744 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 29744 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 29744 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 13664 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 8192 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 8192 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 8192 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 5416 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 5416 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 56 in 31 places, all below massif's threshold (01.00%)
+ n2: 11154 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 11154 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 11154 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 11154 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 11154 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 11154 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 11154 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n1: 2704 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 2704 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 2704 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n0: 1304 in 17 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=22
+#-----------
+time=216458025
+mem_heap_B=160262
+mem_heap_extra_B=54362
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=230706268
+mem_heap_B=164239
+mem_heap_extra_B=57841
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=241389030
+mem_heap_B=167715
+mem_heap_extra_B=60629
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=250085233
+mem_heap_B=380743
+mem_heap_extra_B=92089
+mem_stacks_B=0
+heap_tree=detailed
+n5: 380743 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 295680 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 294912 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 294912 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 35992 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 35992 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 35992 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 31422 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 23166 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 23166 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 23166 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 8184 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 8184 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 72 in 31 places, all below massif's threshold (01.00%)
+ n2: 13497 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 13497 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 13497 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 13497 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 13497 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 13497 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 13497 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n0: 4152 in 18 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=26
+#-----------
+time=263461842
+mem_heap_B=271035
+mem_heap_extra_B=64197
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=279513310
+mem_heap_B=275585
+mem_heap_extra_B=68631
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=295577893
+mem_heap_B=280831
+mem_heap_extra_B=72857
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=308967443
+mem_heap_B=284452
+mem_heap_extra_B=76236
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=319673966
+mem_heap_B=286964
+mem_heap_extra_B=78876
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=333060104
+mem_heap_B=290954
+mem_heap_extra_B=82150
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=341088297
+mem_heap_B=293011
+mem_heap_extra_B=84101
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=354465151
+mem_heap_B=296914
+mem_heap_extra_B=87446
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=363268019
+mem_heap_B=299022
+mem_heap_extra_B=89714
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=372070643
+mem_heap_B=302533
+mem_heap_extra_B=92235
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=380883878
+mem_heap_B=305095
+mem_heap_extra_B=94521
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=394091092
+mem_heap_B=309427
+mem_heap_extra_B=97933
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=402895503
+mem_heap_B=312051
+mem_heap_extra_B=100237
+mem_stacks_B=0
+heap_tree=detailed
+n6: 312051 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 197376 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 196608 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 196608 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 59400 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 59400 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 59400 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 26296 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 16384 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 16384 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 16384 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 9840 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 9840 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 72 in 31 places, all below massif's threshold (01.00%)
+ n2: 22275 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 22275 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 22275 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 22275 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 22275 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 22275 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 22275 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n1: 5400 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 5400 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 5400 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n0: 1304 in 17 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=39
+#-----------
+time=416105671
+mem_heap_B=315035
+mem_heap_extra_B=103317
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=424914858
+mem_heap_B=318094
+mem_heap_extra_B=105874
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=438121381
+mem_heap_B=321134
+mem_heap_extra_B=108858
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=451332778
+mem_heap_B=325291
+mem_heap_extra_B=111805
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=460138322
+mem_heap_B=328179
+mem_heap_extra_B=114101
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=473348768
+mem_heap_B=332125
+mem_heap_extra_B=117619
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=482151495
+mem_heap_B=334454
+mem_heap_extra_B=119690
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=495355848
+mem_heap_B=338499
+mem_heap_extra_B=123109
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=504159227
+mem_heap_B=340624
+mem_heap_extra_B=124816
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=519397945
+mem_heap_B=766942
+mem_heap_extra_B=187634
+mem_stacks_B=0
+heap_tree=peak
+n5: 766942 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 590592 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 589824 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 589824 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 76736 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 76736 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 76736 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n3: 62982 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 46558 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 46558 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 46558 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n1: 16376 0x40B731: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 16376 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 48 in 31 places, all below massif's threshold (01.00%)
+ n2: 28776 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 28776 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 28776 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 28776 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 28776 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 28776 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 28776 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n0: 7856 in 18 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=49
+#-----------
+time=528201454
+mem_heap_B=542874
+mem_heap_extra_B=126142
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=533541903
+mem_heap_B=544568
+mem_heap_extra_B=127432
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=538882225
+mem_heap_B=546143
+mem_heap_extra_B=128729
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=544222547
+mem_heap_B=547463
+mem_heap_extra_B=129801
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=549563159
+mem_heap_B=549372
+mem_heap_extra_B=131548
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=554903393
+mem_heap_B=550390
+mem_heap_extra_B=133642
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=560248099
+mem_heap_B=552043
+mem_heap_extra_B=135173
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=565588359
+mem_heap_B=552960
+mem_heap_extra_B=136200
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=570928649
+mem_heap_B=554815
+mem_heap_extra_B=138153
+mem_stacks_B=0
+heap_tree=detailed
+n6: 554815 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 393984 0x40CDDE: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 393216 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 393216 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n0: 768 in 2 places, all below massif's threshold (01.00%)
+ n1: 84568 0x40D731: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 84568 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 84568 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n2: 35982 0x40372E: void std::vector<std::pair<char, char>, std::allocator<std::pair<char, char> > >::_M_emplace_back_aux<std::pair<char, char> const&>(std::pair<char, char> const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n2: 32768 0x40CF92: void std::vector<state_s, std::allocator<state_s> >::_M_emplace_back_aux<state_s const&>(state_s const&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n1: 32768 0x40C197: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+    n0: 32768 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 3214 in 32 places, all below massif's threshold (01.00%)
+ n2: 31713 0x4EE8207: std::string::_Rep::_S_create(unsigned long, unsigned long, std::allocator<char> const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+  n1: 31713 0x4EE8DC9: std::string::_Rep::_M_clone(std::allocator<char> const&, unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+   n2: 31713 0x4EE8E62: std::string::reserve(unsigned long) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+    n2: 31713 0x4EE8F06: std::string::append(std::string const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.19)
+     n2: 31713 0x40849E: a_star::stringify(state_s) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n1: 31713 0x40ABDD: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+       n0: 31713 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+      n0: 0 in 4 places, all below massif's threshold (01.00%)
+     n0: 0 in 2 places, all below massif's threshold (01.00%)
+    n0: 0 in 1 place, below massif's threshold (01.00%)
+  n0: 0 in 2 places, all below massif's threshold (01.00%)
+ n1: 7688 0x40D813: std::pair<std::_Rb_tree_iterator<std::pair<std::string const, state_s> >, bool> std::_Rb_tree<std::string, std::pair<std::string const, state_s>, std::_Select1st<std::pair<std::string const, state_s> >, std::less<std::string>, std::allocator<std::pair<std::string const, state_s> > >::_M_emplace_unique<std::string, state_s&>(std::string&&, state_s&) (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+  n1: 7688 0x40ABFA: a_star::solve() (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+   n0: 7688 0x4033E3: main (in /home/student/AI/build-sokoban_solver_v2-Desktop-Default/sokoban_solver)
+ n0: 880 in 17 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=58
+#-----------
+time=576273367
+mem_heap_B=556884
+mem_heap_extra_B=139564
+mem_stacks_B=0
+heap_tree=empty
