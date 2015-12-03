@@ -153,7 +153,7 @@ string a_star::solve()
     while(open.top() != final)
     {
         count++;
-        current = open.top();
+        current =  open.top();
         open.pop();
         closed.emplace(stringify(current), current);
 
@@ -195,21 +195,7 @@ string a_star::solve()
 
         for(state_s child : children)
         {
-
-
             cost = current.cost + get_move_cost(child, current);
-
-//            open_it = open.find(state_s(child));
-//            if(open_it != open.end())
-//            {
-//                cout << "I already exist" << endl;
-//            }
-
-//            if( open_it != open.end() && cost < (open.find(child))->cost)
-//            {
-//                cout << "erased from open" << endl;
-//                open.erase(open_it);
-//            }
 
             if( closed.find(stringify(child)) != closed.end() && cost < closed.find(stringify(child))->second.cost)
             {
@@ -217,7 +203,7 @@ string a_star::solve()
                 continue;
             }
 
-            if( closed.find(stringify(child)) == closed.end()) //is end() == state?
+            if( closed.find(stringify(child)) == closed.end())
             {
                 child.cost = cost;
                 child.heuristic = child.cost + get_heuristic(child);
@@ -225,15 +211,7 @@ string a_star::solve()
                 open.push(child);
 
             }
-
-//            sokoban.print(child);
-//            cout << endl;
-//            cout << "get_heuristic() = " << get_heuristic(child) << endl;
-//            cout << "Cost: " << child.cost << endl;
-//            cout << "Rank: " << child.heuristic << endl;
-//            cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
         }
-//      cout << "------------------------------------" << endl;
         children.clear();
     }
     cout << count << endl;

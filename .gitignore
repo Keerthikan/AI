@@ -161,3 +161,6 @@ brick_sorter/uTosNet
 *.txt.user
 *.txt.user.*
 brick_sorter/seri_term/build
+
+#inkscape
+*.svg
