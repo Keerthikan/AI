@@ -38,7 +38,7 @@ void a_star::get_children(state_s parent, vector<state_s> &children)
 
 
         for(int i = 0; i < 4; i++)
-        {            
+        {
             position_t push_direction;
             state_s child = parent;
             child.heuristic = 0;
@@ -245,7 +245,7 @@ string a_star::solve()
     state_s final_state = open.top();
     cout << "final state: " << endl;
     sokoban.print_final(final);
-    print_solution(&final_state);
+    //print_solution(&final_state);
     return "jubii jeg er løst";
 }
 
