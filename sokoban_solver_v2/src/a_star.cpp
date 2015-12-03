@@ -159,40 +159,6 @@ string a_star::solve()
 
         get_children(current, children);
 
-//        cout << "Current state info:" << endl;
-//        sokoban.print(current);
-//        cout << "Cost: " << current.cost << endl;
-//        cout << "Rank: " << current.heuristic << endl;
-//        cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
-
-        /*if(current.man.first == 2 && current.man.second == 7  &&
-                        current.diamonds.at(0).first == 3 &&
-                        current.diamonds.at(0).second == 2  &&
-                        current.diamonds.at(1).first == 2 &&
-                        current.diamonds.at(1).second == 3 &&
-                        current.diamonds.at(2).first == 3 &&
-                        current.diamonds.at(2).second == 4 &&
-                        current.diamonds.at(3).first == 2 &&
-                        current.diamonds.at(3).second == 8)
-            {
-            cout << "current found: " << endl;
-            sokoban.print(current);
-            cout << endl;
-            cout << endl;
-            for(state_s child :  children)
-            {
-                sokoban.print(child);
-                cout << endl;
-                cout << "get_heuristic() = " << get_heuristic(child) << endl;
-                cout << "Cost: " << child.cost << endl;
-                cout << "Rank: " << child.heuristic << endl;
-                cout << "open.size(): " << open.size() << " closed.size(): " << closed.size() << endl;
-
-            }
-            cout << "-----------------------------" << endl;
-            break;
-        }*/
-
         for(state_s child : children)
         {
             cost = current.cost + get_move_cost(child, current);
@@ -223,7 +189,7 @@ string a_star::solve()
     state_s final_state = open.top();
     cout << "final state: " << endl;
     sokoban.print_final(final);
-    print_solution(&final_state);
+    //print_solution(&final_state);
     return "jubii jeg er løst";
 }
 
@@ -235,8 +201,6 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
 
     if(direction_row != 0)
     {
-       // cout << "row: "<< (direction_row)  << endl;
-       // cout <<"row: "<< diamond.first + direction_row << "," << diamond.second << " : " << sokoban.get_map()[diamond.first + direction_row][diamond.second] << endl;
         if(wavefront_obstacle[diamond.first+1][diamond.second] == -1 ||
                 wavefront_obstacle[diamond.first-1][diamond.second] == -1 ||
                 sokoban.get_map()[diamond.first + direction_row][diamond.second] == DEADLOCK)
@@ -251,11 +215,6 @@ bool a_star::validate_push_direction(diamond_t diamond, position_t push_directio
     }
     else if(direction_col != 0)
     {
-      //  cout << "col: "<< (direction_col)  << endl;
-      //  cout <<"col: "<< diamond.first  << "," << diamond.second + direction_col << " : " << sokoban.get_map()[diamond.first][diamond.second + direction_col] << endl;
-      //  cout << "first: "<< wavefront_obstacle[diamond.first][diamond.second+1]  << endl;
-      //  cout << "second: "<< wavefront_obstacle[diamond.first][diamond.second-1]  << endl;
-
         if(wavefront_obstacle[diamond.first][diamond.second+1] == -1 ||
             wavefront_obstacle[diamond.first][diamond.second-1] == -1 ||
             sokoban.get_map()[diamond.first][diamond.second + direction_col] == DEADLOCK)

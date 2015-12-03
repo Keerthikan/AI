@@ -80,3 +80,17 @@ By applying a wavefront with the diamonds set as walls and the man as the initia
 Every side of each diamond is then checked, first to see if the man can reach that side, then to see if the opposite side of the diamond is a valid new position for the diamond.
 If both return true that state is created and saved.
 
+\subsection{Optimizations and Memory Leaks}
+As is known, the solver was not ready for the competition. 
+This section will provide some information on the issue that delayed the development. 
+As the solver was capable of solving simple maps but quickly filled the memory of any computer on larger maps, eventually the conclusion was drawn that a memory leak was present.
+In order to help track down the origin of the memory leak a heap profiler was used. Specifically Massif \cite{massif}.
+Massif provides detailed information about the heap used by the program.
+One drawback of massif is that it greatly increases the time required to run the program.
+Due to this inconvenience, the memory leak debugging was done using a simpler map, as seen in figure \ref{fig:simplemap}.
+The resulting graph when solving the simple map using massif can be seen in figure \ref{fig:simplemassif}.
+Each colour represents the memory usage of a specific function, with the most memory intensive function being the lowest on the graph.
+By examining these graphs it was possible to find the function causing the memory leak, namely, the wavefront function.
+With the liberal use of wavefronts throughout this implementation of a sokoban solver, it is no surprise that a memory leak here would cause significant issues.
+By removing this leak it was possible to go from using six Gb of ram and an equal amount of swap and getting no solution, to using only 64.9 Mb of memory and producing a solution within a minute.
+A slight improvement.
