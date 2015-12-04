@@ -8,11 +8,9 @@ using namespace std;
 
 int main()
 {
+    sokoban_map map("/home/thomas/Documents/Git/AI/sokoban_solver_v2/maps/heuristictest.txt");
+    //map.deadlock_detection();
 
-
-    cout << "With deadlock detection!!!!!!! " << endl; 
-    sokoban_map map("/home/student/AI/sokoban_solver_v2/maps/tridia.txt");
-    map.deadlock_detection();
     map.print();
 
     state_s init = map.get_init_state();
