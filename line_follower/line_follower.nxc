@@ -11,13 +11,13 @@
 #define LEFT_LIMIT          199
 #define RIGHT_LIMIT         127
 
-#define BASE_SPEED          75
-#define TURN_SPEED          50
+#define BASE_SPEED          92
+#define TURN_SPEED          41
 #define STOP                0
 
 #define DEBUG 0 //For debug display info, set to 1;
 
-#define KP                  0.4
+#define KP                  0.5
 #define KD                  0.2
 #define KI                  0.05
 
@@ -31,11 +31,11 @@ void sub_orientation();
 
 void eight();
 void lefty();
+
+bool push();
 bool forward();
 bool left();
-bool left_new();
 bool right();
-bool right_new();
 
 char parse_cmd(int index, string cmd);
 
@@ -49,7 +49,13 @@ float integral = 0;
 
 int orientation = 0;
 
-string cmd = "lluRRdulrrudd";
+int wait_time = 0;
+
+int i = 0;
+
+string cmd = "lrrrrlll";
+
+//string cmd = "rdddlllLUddlluRRRRRdrUUruulldRRdldlluLuulldRurDDullDRdRRRdrUUruurrdLulDulldRddlllluurDldRRRdrUUUluRdddlllldlluRRRRRdrUU";
 
 task main()
 {
@@ -62,8 +68,13 @@ task main()
     SetSensorLight(SENSOR_LEFT,true);
     SetSensorLight(SENSOR_LINE,true);
 
-    while(true)
+    //state_machine();
+    
+    //push();
+    int count = 0;
+    while(count < 10)
     {
+        
         //forward();
         eight();
         //  sensor_line_input = GetInput(SENSOR_LEFT,RawValueField);
@@ -73,47 +84,209 @@ task main()
         //  NumOut(0,LCD_LINE3,test);
         //  NumOut(0,LCD_LINE4, test - sensor_line_input);
         //  NumOut(0,LCD_LINE5, sensor_line_input - test);
-
+        NumOut(0,LCD_LINE7,count);
         print_debug_info(DEBUG);
+        
+        count = count + 1;
     }
 }
 
 void state_machine()
 {
-    for(int i = 0; i < strlen(cmd); i++)
+    for(i = 0; i < strlen(cmd); i++)
     {
         switch(cmd[i]) {
             case 'l':
                 TextOut(0,LCD_LINE7,"l");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    left();
+                    forward();
+                }
+                else if(orientation == 1)
+                {
+                    left();
+                    left();
+                    forward();
+                }
+                else if(orientation == 2)
+                {
+                    right();
+                    forward();
+                }
+                else if(orientation == 3)
+                {
+                    forward();
+                }
+                Wait(wait_time);
                 break;
             case 'r':
                 TextOut(0,LCD_LINE7,"r");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    right();
+                    forward();
+                }
+                else if(orientation == 1)
+                {
+                    forward();
+                }
+                else if(orientation == 2)
+                {
+                    left();
+                    forward();
+                }
+                else if(orientation == 3)
+                {
+                    right();
+                    right();
+                    forward();
+                }
+                Wait(wait_time);
                 break;
             case 'u':
                 TextOut(0,LCD_LINE7,"u");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    forward();
+                }
+                else if(orientation == 1)
+                {
+                    left();
+                    forward();
+                }
+                else if(orientation == 2)
+                {
+                    right();
+                    right();
+                    forward();
+                }
+                else if(orientation == 3)
+                {
+                    right();
+                    forward();
+                }
+                Wait(wait_time);
                 break;
             case 'd':
                 TextOut(0,LCD_LINE7,"d");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    left();
+                    left();
+                    forward();
+                }
+                else if(orientation == 1)
+                {
+                    right();
+                    forward();
+                }
+                else if(orientation == 2)
+                {
+                    forward();
+                }
+                else if(orientation == 3)
+                {
+                    left();
+                    forward();
+                }
+                Wait(wait_time);
                 break;
             case 'L':
                 TextOut(0,LCD_LINE7,"L");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    left();
+                    push();
+                }
+                else if(orientation == 1)
+                {
+                    left();
+                    left();
+                    push();
+                }
+                else if(orientation == 2)
+                {
+                    right();
+                    push();
+                }
+                else if(orientation == 3)
+                {
+                    push();
+                }
+                Wait(wait_time);
                 break;
             case 'R':
                 TextOut(0,LCD_LINE7,"R");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    right();
+                    push();
+                }
+                else if(orientation == 1)
+                {
+                    push();
+                }
+                else if(orientation == 2)
+                {
+                    left();
+                    push();
+                }
+                else if(orientation == 3)
+                {
+                    right();
+                    right();
+                    push();
+                }
+                Wait(wait_time);
                 break;
             case 'U':
                 TextOut(0,LCD_LINE7,"U");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    push();
+                }
+                else if(orientation == 1)
+                {
+                    left();
+                    push();
+                }
+                else if(orientation == 2)
+                {
+                    right();
+                    right();
+                    push();
+                }
+                else if(orientation == 3)
+                {
+                    right();
+                    push();
+                }
+                Wait(wait_time);
                 break;
             case 'D':
                 TextOut(0,LCD_LINE7,"D");
-                Wait(500);
+                if(orientation == 0)
+                {
+                    left();
+                    left();
+                    push();
+                }
+                else if(orientation == 1)
+                {
+                    right();
+                    push();
+                }
+                else if(orientation == 2)
+                {
+                    push();
+                }
+                else if(orientation == 3)
+                {
+                    left();
+                    push();
+                }
+                Wait(wait_time);
                 break;
             default:
                 break;
@@ -128,92 +301,92 @@ while (true) {
   Wait(250);
 
   TextOut(0,LCD_LINE7,"1");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"2");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"3");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"4");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"5");
-  right_new();
+  right();
   Wait(250);
 
   forward();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"1");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"2");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"3");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"4");
-  right_new();
+  right();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"5");
-  right_new();
+  right();
   Wait(250);
 
   forward();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"1");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"2");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"3");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"4");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"5");
-  left_new();
+  left();
   Wait(250);
 
   forward();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"1");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"2");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"3");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"4");
-  left_new();
+  left();
   Wait(250);
 
   TextOut(0,LCD_LINE7,"5");
-  left_new();
+  left();
   Wait(250);
 
 }
@@ -222,38 +395,39 @@ while (true) {
 }
 void eight()
 {
+    wait_time = 200;
     forward();
-    Wait(500);
-    left_new();
-    Wait(500);
+    Wait(wait_time);
+    left();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    right_new();
-    Wait(500);
+    Wait(wait_time);
+    right();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    right_new();
-    Wait(500);
+    Wait(wait_time);
+    right();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    left_new();
-    Wait(500);
+    Wait(wait_time);
+    right();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    left_new();
-    Wait(500);
+    Wait(wait_time);
+    right();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    right_new();
-    Wait(500);
+    Wait(wait_time);
+    left();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    right_new();
-    Wait(500);
+    Wait(wait_time);
+    left();
+    Wait(wait_time);
     forward();
-    Wait(500);
-    right_new();
-    Wait(500);
+    Wait(wait_time);
+    left();
+    Wait(wait_time);
 
 }
 
@@ -272,6 +446,26 @@ void print_debug_info(bool debug)
         Wait(10);
         ClearScreen();
     }
+}
+
+bool push()
+{
+    forward();
+    OnRev(MOTOR_LEFT,BASE_SPEED);
+    OnRev(MOTOR_RIGHT,BASE_SPEED);
+    Wait(150);
+    sensor_line_input = GetInput(SENSOR_LINE,RawValueField);    
+    if(cmd[i+1] != cmd[i])
+    {
+        while(CROSS_THRESHOLD > sensor_line_input)
+        {
+            sensor_line_input = GetInput(SENSOR_LINE,RawValueField);
+            OnFwd(MOTOR_LEFT,BASE_SPEED);
+            OnFwd(MOTOR_RIGHT,BASE_SPEED);
+        }
+    }
+    OnRev(MOTOR_LEFT,STOP);
+    OnRev(MOTOR_RIGHT,STOP);
 }
 
 bool forward()
@@ -321,41 +515,15 @@ bool forward()
         OnRev(MOTOR_RIGHT,BASE_SPEED+corr_factor);
 
         sensor_diff_last = sensor_diff;
-        NumOut(0,LCD_LINE1,corr_factor);
     }
 
-    OnRev(SENSOR_RIGHT,STOP); // Hammertime!
-    OnRev(SENSOR_LEFT,STOP);
+    OnRev(MOTOR_RIGHT,STOP); // Hammertime!
+    OnRev(MOTOR_LEFT,STOP);
 
     return true;
 }
 
 bool left()
-{
-    sub_orientation();
-    OnRev(MOTOR_LEFT,TURN_SPEED);
-    OnRev(MOTOR_RIGHT,-TURN_SPEED);
-
-    Wait(300);
-
-    sensor_line_input = GetInput(SENSOR_LINE,RawValueField);
-
-    while(sensor_line_input < CROSS_THRESHOLD )
-    {
-        sensor_line_input = GetInput(SENSOR_LINE,RawValueField);
-        OnRev(MOTOR_LEFT,TURN_SPEED);
-        OnRev(MOTOR_RIGHT,-TURN_SPEED);
-
-        NumOut(0,LCD_LINE2,sensor_line_input);
-    }
-
-    OnRev(SENSOR_RIGHT,STOP); // Hammertime!
-    OnRev(SENSOR_LEFT,STOP);
-
-    return true;
-}
-
-bool left_new()
 {
   sub_orientation();
 
@@ -417,32 +585,7 @@ bool left_new()
 
 bool right()
 {
-    add_orientation();
-    OnRev(MOTOR_LEFT,-(TURN_SPEED));
-    OnRev(MOTOR_RIGHT,(TURN_SPEED));
-
-    Wait(300);
-
-    sensor_line_input = GetInput(SENSOR_LINE,RawValueField);
-
-    while(sensor_line_input < CROSS_THRESHOLD)
-    {
-        sensor_line_input = GetInput(SENSOR_LINE,RawValueField);
-        OnRev(MOTOR_LEFT,-(TURN_SPEED));
-        OnRev(MOTOR_RIGHT,(TURN_SPEED));
-
-
-    }
-
-    OnRev(SENSOR_RIGHT,STOP); // Hammertime!
-    OnRev(SENSOR_LEFT,STOP);
-
-    return true;
-}
-
-bool right_new()
-{
-  sub_orientation();
+  add_orientation();
 
   OnRev(MOTOR_LEFT,-(TURN_SPEED));
   OnRev(MOTOR_RIGHT,(TURN_SPEED));
